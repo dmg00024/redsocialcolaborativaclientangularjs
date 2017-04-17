@@ -23,7 +23,7 @@ angular.module('authentication', [])
                     
                 }).then(function succes(json)
                 {
-                    location.href='/RedSocialColaborativaClientAngularJS/miperfil.html';
+                    location.href='/redsocialcolaborativaclientangularjs/miperfil.html';
                     
                 }, function error(json){
                     
