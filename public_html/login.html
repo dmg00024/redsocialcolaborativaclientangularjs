@@ -6,7 +6,7 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>Skala 2 - Iniciar sesión</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -23,29 +23,32 @@ and open the template in the editor.
 
         <!-- Theme CSS -->
         <link href="css/new-age.min.css" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.3/angular.min.js"></script>
+        <script src="js/login.js"></script>
     </head>
 
     <body>
-        <div class="container" >
+        <div ng-app="authentication" class="container" >
 
             <form class="form-signin col-lg-6 col-lg-offset-3">
-
+                
                 <h2 class="form-signin-heading">Por favor inicie sesión</h2>
                 <label for="inputEmail" class="sr-only">Nombre de usuario</label>
-                <input type="text" id="inputEmail" class="form-control" placeholder="usuario" required>
+                <input type="text" id="inputEmail" class="form-control" placeholder="usuario" required ng-model="username"/>
                 <label for="inputPassword" class="sr-only">Contraseña</label>
-                <input type="password" id="inputPassword" class="form-control" placeholder="contraseña" required>
-
+                <input type="password" id="inputPassword" class="form-control" placeholder="contraseña" required ng-model="password"/>
+                
                 <div class="checkbox">
                     <label>
                         <input type="checkbox" value="remember-me"> Recordar
                     </label>
                 </div>
-
-                <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
-                <p></p>
+                
+                <button class="btn btn-lg btn-primary btn-block" type="submit" ng-controller="login" ng-click="llamada()">Iniciar sesión</button>
+                <p> </p>
                 <button type="button" class="btn btn-warning" onclick="window.location.href='http://localhost:8383/RedSocialColaborativaClientAngularJS/index.html' ">Volver</button>
-                <p></p>
+                <p> </p>
+                
             </form>
 
         </div> <!-- /container -->
@@ -53,11 +56,13 @@ and open the template in the editor.
 
         <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
         <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
-        <footer>
-            <div class="container">
-                <p>&copy; 2017 Desarrollado por Daniel Muñoz Gallardo</p>
+        <footer>	
+            <div class="row">
+                <div class="container text-center">
+                    <h4>Desarrollado por Daniel Muñoz Gallardo © 2017</h4>
+                </div>
             </div>
-        </footer>
+        </footer>  
 
         <!-- jQuery -->
         <script src="lib/jquery/jquery.min.js"></script>
