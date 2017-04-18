@@ -7,7 +7,7 @@
 angular.module('authentication', [])
         .controller('login', function ($scope, $http) {
             
-            $scope.llamada = function () 
+            $scope.inicioSesion = function () 
             {
                 $http({
                     method: 'GET',

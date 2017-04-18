@@ -16,15 +16,13 @@
         <link rel="stylesheet" href="lib/simple-line-icons/css/simple-line-icons.css">
         <link rel="stylesheet" href="lib/device-mockups/device-mockups.min.css">
         
-        
-      
-        
-        
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.3/angular.min.js"></script>
+        <script src="js/registro.js"></script>
         
     </head>
 
     <body>
-        <div class="container">
+        <div class="container" ng-app="registro">
             <h1 class="col-xs-8 text-info">Solicitud de registro</h1>
             <p></p>
             <form> 
@@ -33,29 +31,29 @@
 
                     <div class="form-group">
                         <label for="email">Elige un nombre de usuario:</label>
-                        <input type="text" class="form-control" id="username" placeholder="Introduce un nombre de usuario">
+                        <input type="text" class="form-control" id="username" placeholder="Introduce un nombre de usuario" ng-model="username">
                     </div>
 
                     <div class="form-group">
                         <label for="email">Email:</label>
-                        <input type="email" class="form-control" id="email" placeholder="Email">
+                        <input type="email" class="form-control" id="email" placeholder="Email" ng-model="mail">
                     </div>
 
                     <div class="form-group">
                         <label for="email">Repite email:</label>
-                        <input type="email" class="form-control" id="confMail" placeholder="Repite email">
+                        <input type="email" class="form-control" id="confMail" placeholder="Repite email" ng-model="confMail">
                     </div>
 
                     <div class="form-group">
                         <label for="password">Introduce una contraseña:</label>
-                        <input type="password" class="form-control" id="password" placeholder="Contraseña">
+                        <input type="password" class="form-control" id="password" placeholder="Contraseña" ng-model="password">
                     </div>
 
                     <div class="form-group">
                         <label for="confPassword">Repite contraseña:</label>
-                        <input type="password" class="form-control" id="confPassword" placeholder="Repite contraseña">
+                        <input type="password" class="form-control" id="confPassword" placeholder="Repite contraseña" ng-model="confPassword">
                     </div>
-                    <button type="submit" class="btn btn-success">Confirmar</button>
+                    <button type="submit" class="btn btn-success" ng-controller="solicitud" ng-click="registro()">Confirmar</button>
                     <a href="/redsocialcolaborativaclientangularjs/index.html" class="btn btn-primary" role="button">Volver</a>
                 </div>
 
