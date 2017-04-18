@@ -36,8 +36,8 @@ angular.module('confirmacionregistro', [])
                     location.href='/redsocialcolaborativaclientangularjs/miperfil.html';
                     
                 }, function error(response){
-                    alert("mal");
-                    //location.href='/redsocialcolaborativaclientangularjs/index.html';
+                    alert("no es posible efectuar la confirmación de registro");
+                    location.href='/redsocialcolaborativaclientangularjs/index.html';
                 });
             };
         });
