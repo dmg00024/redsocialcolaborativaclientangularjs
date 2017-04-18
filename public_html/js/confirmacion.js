@@ -21,20 +21,22 @@ angular.module('confirmacionregistro', [])
             {
                 $http({
                     method: 'POST',
-                    url: "http://localhost:8080/RedSocialColaborativaRESTFUL/perfil/acceso/"+token,
+                    url: "http://localhost:8080/RedSocialColaborativaRESTFUL/confirmacion/"+token,
                     
                     headers:{
                         'Content-Type': 'application/json'
+                    },
+                    
+                    data:{
+                        
                     }
                     
                 }).then(function succes(response)
                 {
-                    alert("bien");
                     location.href='/redsocialcolaborativaclientangularjs/miperfil.html';
                     
                 }, function error(response){
                     alert("mal");
-                    alert(token);
                     //location.href='/redsocialcolaborativaclientangularjs/index.html';
                 });
             };

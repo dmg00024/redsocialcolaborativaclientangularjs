@@ -26,13 +26,15 @@ and open the template in the editor.
         <script src="js/confirmacion.js"></script>
     </head>
     <body>
-        <h1 class="text-center text-success">Confirmando registro...</h1>
-        <p></p>
-        <h2 class="text-center text-primary">Será redirigido a su perfil</h2>
         
-        <button class="btn-block" ng-app="confirmacionregistro" ng-controller="confirmacion" ng-click="confirmar()">
-        Pulse para continuar
-        </button>
+        <div ng-app="confirmacionregistro">
+            <h1 class="text-center text-success">Confirmando registro...</h1>
+            <p></p>
+            <h2 class="text-center text-primary">Será redirigido a su perfil</h2>
+            
+            //llamar al metodo del scope automaticamente al ser posible.
+
+        </div>
 
         <footer>	
             <div class="row">
