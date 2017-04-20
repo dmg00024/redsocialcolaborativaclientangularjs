@@ -5,7 +5,7 @@
  */
 
 angular.module('registro', [])
-        .controller('solicitud', function ($scope, $http) {
+        .controller('solicitud', function ($scope, $http) {   
             
             $scope.registro = function () 
             {

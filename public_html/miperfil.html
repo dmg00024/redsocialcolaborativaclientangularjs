@@ -15,64 +15,73 @@
         <link rel="stylesheet" href="lib/font-awesome/css/font-awesome.min.css">
         <link rel="stylesheet" href="lib/simple-line-icons/css/simple-line-icons.css">
         <link rel="stylesheet" href="lib/device-mockups/device-mockups.min.css">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.3/angular.min.js"></script>
+        <script src="js/login.js"></script>
     </head>
 
     <body>
 
-        <div class="container">
-            <!-- Static navbar -->
-            <nav class="navbar navbar-default">
-                <div class="container-fluid">
-                    <div id="navbar" class="navbar-collapse collapse">
-                        <ul class="nav navbar-nav">
-                            <li><a class="alert-success" href="/redsocialcolaborativaclientangularjs/miperfil.html">Mi perfil</a></li>
-                            <li><a class="" href="#">Buscar</a></li>
-                            <li><a class="alert-danger" href="/redsocialcolaborativaclientangularjs/index.html">Salir</a></li>
-                        </ul>
-                        <ul class="nav navbar-nav navbar-right">
-                            <li class="active"><h3 class="badge" id="conectado">Conectado como: </h3></li>
-                        </ul>
-                    </div><!--/.nav-collapse -->
-                </div><!--/.container-fluid -->
-            </nav>
+        <div ng-app="authentication" ng-controller="datosperfil" ng-init="miperfil()"> 
+           
 
-            <!-- Main component for a primary marketing message or call to action -->
-            
-                <div class="jumbotron">
-                    <h1 id="username">Perfil de </h1>
-                    <h3 id="nombrecompleto"> </h3>
-                    <h3 id="nivel">Máximo nivel completado:</h3>
-                    <img id="fotoperfil" class="img-thumbnail" height="200" width="300">
-                    <h3></h3>
-                    <button class="btn btn-primary" type="button" value="actualizar" id="actualizar">Actualizar perfil</button>
-                </div>
-            
-        </div> <!-- /container -->
-        
-        <section>
-            <div class="container">
+                <div class="container">
+                    <!-- Static navbar -->
+                    <nav class="navbar navbar-default">
+                        <div class="container-fluid">
+                            <div id="navbar" class="navbar-collapse collapse">
+                                <ul class="nav navbar-nav">
+                                    <li><a class="alert-success" href="/redsocialcolaborativaclientangularjs/miperfil.html">Mi perfil</a></li>
+                                    <li><a class="" href="#">Buscar</a></li>
+                                    <li><a class="alert-danger" href="/redsocialcolaborativaclientangularjs/index.html">Cerrar Sesión</a></li>
+                                </ul>
+                                <ul class="nav navbar-nav navbar-right">
+                                    <li class="active"><h3 class="badge" id="conectado">Conectado como: {{username}}</h3></li>
+                                </ul>
+                            </div><!--/.nav-collapse -->
+                        </div><!--/.container-fluid -->
+                    </nav>
 
-                <div id="vias" class="panel panel-default">
-                    <div class="panel-heading" id="usernamelistvias">Vias realizadas por </div>
-                    <div class="panel-body">
-                        Contenido del panel
-                        <button class="btn btn-default pull-right" type="button" value="verficha" id="verfichaid">
-                            Ver ficha
-                        </button>
+                    <!-- Main component for a primary marketing message or call to action -->
+
+                    <div class="jumbotron" >
+                        <h2 id="username">Perfil de {{username}}</h2>
+                        <h3 id="nombrecompleto"> </h3>
+                        <h3 id="nivel">Máximo nivel completado: {{nivel}}</h3>
+                        <h3 id="nivel">{{nombre}} {{apellidos}}</h3>
+                        <img class="img-thumbnail" height="200" width="300" ng-src="data:image/JPEG;base64,{{foto}}">
+                        <h3></h3>
+                        <button class="btn btn-primary" type="button" value="actualizar" id="actualizar">Actualizar perfil</button>
                     </div>
-                </div>
 
-                <div id="amigos" class="panel panel-default">
-                    <div class="panel-heading" id="usernamelistamigos">Amigos de </div>
-                </div>
+                </div> <!-- /container -->
 
-            </div>
-        </section>
+                <section>
+                    <div class="container">
+
+                        <div id="vias" class="panel panel-default">
+                            <div class="panel-heading" id="usernamelistvias">Vias realizadas por </div>
+                            <div class="panel-body">
+                                Contenido del panel
+                                <button class="btn btn-default pull-right" type="button" value="verficha" id="verfichaid">
+                                    Ver ficha
+                                </button>
+                            </div>
+                        </div>
+
+                        <div id="amigos" class="panel panel-default">
+                            <div class="panel-heading" id="usernamelistamigos">Amigos de </div>
+                        </div>
+
+                    </div>
+                </section>
+            
+        </div>
 
         <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
         <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
-        
-         <footer>	
+
+        <footer>	
             <div class="row">
                 <div class="container text-center">
                     <h4>Desarrollado por Daniel Muñoz Gallardo © 2017</h4>
@@ -91,6 +100,6 @@
 
         <!-- Theme JavaScript -->
         <script src="js/new-age.min.js"></script>  
-        
+
     </body>
 </html>
