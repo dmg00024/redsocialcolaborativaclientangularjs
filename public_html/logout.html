@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Skala 2 - confirmación de registro</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Custom Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+
+        <!-- Plugin CSS -->
+        <link rel="stylesheet" href="lib/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" href="lib/simple-line-icons/css/simple-line-icons.css">
+        <link rel="stylesheet" href="lib/device-mockups/device-mockups.min.css">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.3/angular.min.js"></script>
+        <script src="js/login.js"></script>
+    </head>
+    <body>
+        
+        <div ng-app="authentication" ng-controller="logoutcontroller" ng-init="logout()">
+            <h1 class="text-center text-success">Cerrando sesión...</h1>
+            <p></p>
+            <h2 class="text-center text-primary">Será redirigido a la página principal</h2>
+        </div>
+
+        <footer>	
+            <div class="row">
+                <div class="container text-center">
+                    <h4>Desarrollado por Daniel Muñoz Gallardo © 2017</h4>
+                </div>
+            </div>
+        </footer>  
+    </body>
+</html>

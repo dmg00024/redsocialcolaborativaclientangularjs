@@ -38,12 +38,12 @@ app.controller('login', function ($scope, $http)
 app.controller('datosperfil', function ($scope, $http) 
 {   
     $scope.miperfil = function ()
-    {        
+    {     
         $http({
             method: 'GET',
             url: 'http://localhost:8080/RedSocialColaborativaRESTFUL/perfil/',
             
-             xhrFields: {
+            xhrFields: {
                 withCredentials: true
             },
             
@@ -53,6 +53,7 @@ app.controller('datosperfil', function ($scope, $http)
 
         }).then(function success(json)
         {
+            //alert("todo ha salido bien");
             $scope.username = json.data.username;
             $scope.nivel=json.data.nivel;
             $scope.nombre=json.data.nombre;
@@ -60,7 +61,97 @@ app.controller('datosperfil', function ($scope, $http)
             $scope.foto=json.data.foto;
 
         }, function error(json) {
-            alert("Sesión caducada. Vuelva a iniciar sesión.");
+            //alert("Sesión caducada. Vuelva a iniciar sesión.");
         });
+        
+        $http({
+            method: 'GET',
+            url: 'http://localhost:8080/RedSocialColaborativaRESTFUL/perfil/numeropeticiones',
+            
+            xhrFields: {
+                withCredentials: true
+            },
+            
+            headers: {
+                'Content-Type': 'application/json'
+            }
+
+        }).then(function success(json)
+        {
+            $scope.numero=json.data.numeroPendientes;
+        }, function error(json) {
+            //alert("Sesión caducada. Vuelva a iniciar sesión.");
+        });
+        
+        $http({
+            method: 'GET',
+            url: 'http://localhost:8080/RedSocialColaborativaRESTFUL/perfil/peticiones',
+            
+            xhrFields: {
+                withCredentials: true
+            },
+            
+            headers: {
+                'Content-Type': 'application/json'
+            }
+
+        }).then(function success(json)
+        {
+            $scope.peticiones=json.data;
+        }, function error(json) {
+            //alert("Sesión caducada. Vuelva a iniciar sesión.");
+        });
+        
+        $http({
+            method: 'GET',
+            url: 'http://localhost:8080/RedSocialColaborativaRESTFUL/perfil/vias',
+            
+            xhrFields: {
+                withCredentials: true
+            },
+            
+            headers: {
+                'Content-Type': 'application/json'
+            }
+
+        }).then(function success(json)
+        {
+            $scope.vias=json.data;
+        }, function error(json) {
+            //alert("Sesión caducada. Vuelva a iniciar sesión.");
+        });
+        
+        
+        $http({
+            method: 'GET',
+            url: 'http://localhost:8080/RedSocialColaborativaRESTFUL/perfil/amigos',
+            
+            xhrFields: {
+                withCredentials: true
+            },
+            
+            headers: {
+                'Content-Type': 'application/json'
+            }
+
+        }).then(function success(json)
+        {
+            $scope.amigos=json.data;
+        }, function error(json) {
+            //alert("Sesión caducada. Vuelva a iniciar sesión.");
+        });
+        
+    };
+    
+    
+        
+    
+});
+
+app.controller('logoutcontroller', function ($scope) 
+{   
+    $scope.logout = function ()
+    {        
+        location.href='/redsocialcolaborativaclientangularjs/index.html';
     };
 });

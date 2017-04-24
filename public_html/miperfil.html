@@ -31,15 +31,57 @@
                         <div class="container-fluid">
                             <div id="navbar" class="navbar-collapse collapse">
                                 <ul class="nav navbar-nav">
-                                    <li><a class="alert-success" href="/redsocialcolaborativaclientangularjs/miperfil.html">Mi perfil</a></li>
-                                    <li><a class="" href="#">Buscar</a></li>
-                                    <li><a class="alert-danger" href="/redsocialcolaborativaclientangularjs/index.html">Cerrar Sesión</a></li>
+                                    <li><a class="btn alert-success" href="/redsocialcolaborativaclientangularjs/miperfil.html">Mi perfil</a></li>
+                                    <li><a></a></li>
+                                    <li><a class="btn alert-info" href="#">Buscador</a></li>
+                                    <li><a></a></li>
+                                    <li><a class="btn alert-danger" href="/redsocialcolaborativaclientangularjs/logout.html">Cerrar Sesión</a></li>
                                 </ul>
+
                                 <ul class="nav navbar-nav navbar-right">
                                     <li class="active"><h3 class="badge" id="conectado">Conectado como: {{username}}</h3></li>
                                 </ul>
                             </div><!--/.nav-collapse -->
                         </div><!--/.container-fluid -->
+                    </nav>
+
+                    <nav class="navbar">
+                        
+                        <div class="container">
+
+                            <!-- Trigger the modal with a button -->
+                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Solicitudes de amistad pendientes: {{numero}}</button>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="myModal" role="dialog">
+                                <div class="modal-dialog">
+
+                                    <!-- Modal content-->
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">Solicitudes de amistad pendientes</h4>
+                                        </div>
+                                        <div class="modal-body panel-heading">
+                                            <div class="panel-body" ng-repeat="emisor in peticiones">
+                                                Emisor: {{emisor.emisor}}
+                                                <button class="btn btn-default pull-right" type="button" value="aceptar" id="aceptar">
+                                                    Aceptar
+                                                </button>
+                                                <button class="btn btn-default pull-right" type="button" value="eliminar" id="eliminar">
+                                                    Eliminar
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Volver</button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+
                     </nav>
 
                     <!-- Main component for a primary marketing message or call to action -->
@@ -60,17 +102,21 @@
                     <div class="container">
 
                         <div id="vias" class="panel panel-default">
-                            <div class="panel-heading" id="usernamelistvias">Vias realizadas por </div>
-                            <div class="panel-body">
-                                Contenido del panel
-                                <button class="btn btn-default pull-right" type="button" value="verficha" id="verfichaid">
+                            <div class="panel-heading" id="usernamelistvias">Mis vias </div>
+                            <div class="panel-body" ng-repeat="via in vias">{{via.nombre}}
+                                <button class="btn btn-default pull-right" type="button" value="verficha" id="verfichavia">
                                     Ver ficha
                                 </button>
                             </div>
                         </div>
 
                         <div id="amigos" class="panel panel-default">
-                            <div class="panel-heading" id="usernamelistamigos">Amigos de </div>
+                            <div class="panel-heading" id="usernamelistamigos">Mis amigos </div>
+                            <div class="panel-body" ng-repeat="amigo in amigos">{{amigo.username}}
+                                <button class="btn btn-default pull-right" type="button" value="verficha" id="verfichaamigo">
+                                    Ver perfil
+                                </button>
+                            </div>
                         </div>
 
                     </div>
