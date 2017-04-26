@@ -7,8 +7,10 @@
 var app = angular.module('authentication', []);
 
 app.config(['$httpProvider', function($httpProvider){
-        $httpProvider.defaults.withCredentials=true;
-}]);
+        $httpProvider.defaults.xsrfCookieName = 'csrftoken';
+        $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
+        $httpProvider.defaults.withCredentials = true;
+    }]);
 
 app.controller('login', function ($scope, $http)
 {   
@@ -17,9 +19,7 @@ app.controller('login', function ($scope, $http)
         $http({
             method: 'GET',
             url: 'http://localhost:8080/RedSocialColaborativaRESTFUL/username/',
-            xhrFields: {
-                withCredentials: true
-            },
+            
             headers: {
                 Authorization: "Basic " + btoa($scope.username + ":" + $scope.password)
             }
@@ -35,7 +35,7 @@ app.controller('login', function ($scope, $http)
     
 });
 
-app.controller('datosperfil', function ($scope, $http) 
+app.controller('miperfil', function ($scope, $http) 
 {   
     $scope.miperfil = function ()
     {     
@@ -43,17 +43,12 @@ app.controller('datosperfil', function ($scope, $http)
             method: 'GET',
             url: 'http://localhost:8080/RedSocialColaborativaRESTFUL/perfil/',
             
-            xhrFields: {
-                withCredentials: true
-            },
-            
             headers: {
                 'Content-Type': 'application/json'
             }
 
         }).then(function success(json)
         {
-            //alert("todo ha salido bien");
             $scope.username = json.data.username;
             $scope.nivel=json.data.nivel;
             $scope.nombre=json.data.nombre;
@@ -61,16 +56,12 @@ app.controller('datosperfil', function ($scope, $http)
             $scope.foto=json.data.foto;
 
         }, function error(json) {
-            //alert("Sesión caducada. Vuelva a iniciar sesión.");
+            alert("Sesión caducada. Vuelva a iniciar sesión.");
         });
         
         $http({
             method: 'GET',
             url: 'http://localhost:8080/RedSocialColaborativaRESTFUL/perfil/numeropeticiones',
-            
-            xhrFields: {
-                withCredentials: true
-            },
             
             headers: {
                 'Content-Type': 'application/json'
@@ -80,16 +71,12 @@ app.controller('datosperfil', function ($scope, $http)
         {
             $scope.numero=json.data.numeroPendientes;
         }, function error(json) {
-            //alert("Sesión caducada. Vuelva a iniciar sesión.");
+            alert("Sesión caducada. Vuelva a iniciar sesión.");
         });
         
         $http({
             method: 'GET',
             url: 'http://localhost:8080/RedSocialColaborativaRESTFUL/perfil/peticiones',
-            
-            xhrFields: {
-                withCredentials: true
-            },
             
             headers: {
                 'Content-Type': 'application/json'
@@ -99,16 +86,12 @@ app.controller('datosperfil', function ($scope, $http)
         {
             $scope.peticiones=json.data;
         }, function error(json) {
-            //alert("Sesión caducada. Vuelva a iniciar sesión.");
+            
         });
         
         $http({
             method: 'GET',
             url: 'http://localhost:8080/RedSocialColaborativaRESTFUL/perfil/vias',
-            
-            xhrFields: {
-                withCredentials: true
-            },
             
             headers: {
                 'Content-Type': 'application/json'
@@ -118,17 +101,13 @@ app.controller('datosperfil', function ($scope, $http)
         {
             $scope.vias=json.data;
         }, function error(json) {
-            //alert("Sesión caducada. Vuelva a iniciar sesión.");
+            alert("Sesión caducada. Vuelva a iniciar sesión.");
         });
         
         
         $http({
             method: 'GET',
             url: 'http://localhost:8080/RedSocialColaborativaRESTFUL/perfil/amigos',
-            
-            xhrFields: {
-                withCredentials: true
-            },
             
             headers: {
                 'Content-Type': 'application/json'
@@ -138,7 +117,7 @@ app.controller('datosperfil', function ($scope, $http)
         {
             $scope.amigos=json.data;
         }, function error(json) {
-            //alert("Sesión caducada. Vuelva a iniciar sesión.");
+            alert("Sesión caducada. Vuelva a iniciar sesión.");
         });
         
     };
@@ -146,12 +125,8 @@ app.controller('datosperfil', function ($scope, $http)
     $scope.confirmarpeticion=function(idPeticion)
     {   
         $http({
-            method: 'POST',
-            url: 'http://localhost:8080/RedSocialColaborativaRESTFUL/perfil/peticion/',
-            
-            xhrFields: {
-                withCredentials: true
-            },
+            method: 'PUT',
+            url: 'http://localhost:8080/RedSocialColaborativaRESTFUL/perfil/peticiones/',
             
             headers: {
                 'Content-Type': 'application/json'
@@ -172,7 +147,6 @@ app.controller('datosperfil', function ($scope, $http)
     };
 });
    
-
 app.controller('logoutcontroller', function ($scope) 
 {   
     $scope.logout = function ()
