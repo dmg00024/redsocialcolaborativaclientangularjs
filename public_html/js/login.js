@@ -4,6 +4,13 @@
  * and open the template in the editor.
  */
 
+function getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+    results = regex.exec(location.search);
+    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+
 var app = angular.module('authentication', []);
 
 app.config(['$httpProvider', function($httpProvider){
@@ -26,7 +33,23 @@ app.controller('login', function ($scope, $http)
 
         }).then(function succes(json)
         {
+            $scope.username=json.data.username;
             location.href = '/redsocialcolaborativaclientangularjs/miperfil.html';
+
+        }, function error(json) {
+            alert("Usuario y/o contraseña incorrectos");
+        });
+    };
+    
+    $scope.recuerdaSesion = function ()
+    {      
+        $http({
+            method: 'GET',
+            url: 'http://localhost:8080/RedSocialColaborativaRESTFUL/username/'
+
+        }).then(function succes(json)
+        {
+            $scope.username=json.data.username;
 
         }, function error(json) {
             alert("Usuario y/o contraseña incorrectos");
@@ -145,6 +168,11 @@ app.controller('miperfil', function ($scope, $http)
         });
         
     };
+    
+    $scope.redirige=function(username)
+    {
+        location.href='/redsocialcolaborativaclientangularjs/perfil.html?username='+username;
+    };
 });
    
 app.controller('logoutcontroller', function ($scope) 
@@ -152,5 +180,31 @@ app.controller('logoutcontroller', function ($scope)
     $scope.logout = function ()
     {        
         location.href='/redsocialcolaborativaclientangularjs/index.html';
+    };
+});
+
+
+app.controller('perfil', function ($scope, $http)
+{
+    
+    $scope.datosperfil = function ()
+    {
+        var username=getParameterByName("username");
+        
+        $http({
+            method: 'GET',
+            url: "http://localhost:8080/RedSocialColaborativaRESTFUL/perfil/" + username
+
+        }).then(function success(json)
+        {
+            $scope.usernameamigo = json.data.username;
+            $scope.nivel=json.data.nivel;
+            $scope.nombre=json.data.nombre;
+            $scope.apellidos=json.data.apellidos;
+            $scope.foto=json.data.foto;
+            
+        }, function error(response) {
+
+        });
     };
 });

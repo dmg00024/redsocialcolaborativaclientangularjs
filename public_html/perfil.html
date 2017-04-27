@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Skala 2 - Perfil de</title>
+        <title>Skala 2 - Mi perfil</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -15,62 +15,78 @@
         <link rel="stylesheet" href="lib/font-awesome/css/font-awesome.min.css">
         <link rel="stylesheet" href="lib/simple-line-icons/css/simple-line-icons.css">
         <link rel="stylesheet" href="lib/device-mockups/device-mockups.min.css">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.3/angular.min.js"></script>
+        <script src="js/login.js"></script>
     </head>
 
     <body>
-        
-        <div class="container">
-            <!-- Static navbar -->
-            <nav class="navbar navbar-default">
-                <div class="container-fluid">
-                    <div id="navbar" class="navbar-collapse collapse">
-                        <ul class="nav navbar-nav">
-                            <li><a class="alert-success" href="/redsocialcolaborativaclientangularjs/miperfil.html">Mi perfil</a></li>
-                            <li><a class="" href="#">Buscar</a></li>
-                            <li><a class="alert-danger" href="/redsocialcolaborativaclientangularjs/index.html">Salir</a></li>
-                        </ul>
-                        <ul class="nav navbar-nav navbar-right">
-                            <li class="active"><h3 class="badge" id="conectado">Conectado como: </h3></li>
-                        </ul>
-                    </div><!--/.nav-collapse -->
-                </div><!--/.container-fluid -->
-            </nav>
 
-            <!-- Main component for a primary marketing message or call to action -->
-            
-                <div class="jumbotron">
-                    <h1 id="username">Perfil de </h1>
-                    <h3 id="nombrecompleto"> </h3>
-                    <h3 id="nivel">Máximo nivel completado:</h3>
-                    <img id="fotoperfil" class="img-thumbnail" height="200" width="300">
-                    <h3></h3>
-                    <button class="btn btn-primary" type="button" value="solicitud" id="solicitud">Enviar solicitud amistad</button>
-                </div>
-            
-        </div> <!-- /container -->
-        
-        <section>
+        <div ng-app="authentication" ng-controller="login" ng-init="recuerdaSesion()"> 
+
             <div class="container">
+                <!-- Static navbar -->
+                <nav class="navbar navbar-default">
+                    <div class="container-fluid">
+                        <div id="navbar" class="navbar-collapse collapse">
+                            <ul class="nav navbar-nav">
+                                <li><a class="btn alert-success" href="/redsocialcolaborativaclientangularjs/miperfil.html">Mi perfil</a></li>
+                                <li><a></a></li>
+                                <li><a class="btn alert-info" href="#">Buscador</a></li>
+                                <li><a></a></li>
+                                <li><a class="btn alert-danger" href="/redsocialcolaborativaclientangularjs/logout.html">Cerrar Sesión</a></li>
+                            </ul>
 
-                <div id="vias">
-                    <h3 id="usernamelistvias">Vias realizadas por </h3>
-                    <ul class="list-group" id="listavias">
-                        <li class="list-group-item">Los cañones del richard <input class="alert-info" type="button" value="Ver ficha"/></li>
-                    </ul>
+                            <ul class="nav navbar-nav navbar-right">
+                                <li class="active"><h3 class="badge" id="conectado">Conectado como: {{username}}</h3></li>
+                            </ul>
+                        </div><!--/.nav-collapse -->
+                    </div><!--/.container-fluid -->
+                </nav>
+
+                <!-- Main component for a primary marketing message or call to action -->
+
+                
+                <div class="jumbotron" ng-controller="perfil" ng-init="datosperfil()">
+                    <h2 id="username">Perfil de {{usernameamigo}}</h2>
+                    <h3 id="nivel">Máximo nivel completado: {{nivel}}</h3>
+                    <h3 id="nombrecompleto">{{nombre}} {{apellidos}}</h3>
+                    <img class="img-thumbnail" height="200" width="300" ng-src="data:image/JPEG;base64,{{foto}}">
+                    <h3></h3>
+                    <button class="btn btn-primary" type="button" value="enviarpeticion" id="actualizar">Enviar peticion de amistad</button>
                 </div>
 
-                <div id="amigos">
-                    <h3 id="usernamelistamigos">Amigos de </h3>
-                    <ul class="list-group" id="listaamigos">
+            </div> <!-- /container -->
 
-                    </ul>
+            <section ng-controller="perfil" ng-init="datosperfil()">
+                <div class="container">
+
+                    <div id="vias" class="panel panel-default">
+                        <div class="panel-heading" id="usernamelistvias">Vias de {{usernameamigo}}</div>
+                        <div class="panel-body" ng-repeat="via in vias">{{via.nombre}}
+                            <button class="btn btn-default pull-right" type="button" value="verficha" id="{{via.id_via}}">
+                                Ver ficha
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="amigos" class="panel panel-default">
+                        <div class="panel-heading" id="usernamelistamigos">Amigos de {{usernameamigo}} </div>
+                        <div class="panel-body" ng-repeat="amigo in amigos">{{amigo.username}}
+                            <button class="btn btn-default pull-right" type="button" value="verperfil" id="verfichaamigo">
+                                Ver perfil
+                            </button>
+                        </div>
+                    </div>
+
                 </div>
+            </section>
 
-            </div>
-        </section>
+        </div>
 
         <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
         <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+
         <footer>	
             <div class="row">
                 <div class="container text-center">
@@ -89,9 +105,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
 
         <!-- Theme JavaScript -->
-        <script src="js/new-age.min.js"></script>    
-            
-           
-        
+        <script src="js/new-age.min.js"></script>  
+
     </body>
 </html>

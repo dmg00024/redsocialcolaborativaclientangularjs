@@ -23,104 +23,103 @@
     <body>
 
         <div ng-app="authentication" ng-controller="miperfil" ng-init="miperfil()"> 
-           
 
-                <div class="container">
-                    <!-- Static navbar -->
-                    <nav class="navbar navbar-default">
-                        <div class="container-fluid">
-                            <div id="navbar" class="navbar-collapse collapse">
-                                <ul class="nav navbar-nav">
-                                    <li><a class="btn alert-success" href="/redsocialcolaborativaclientangularjs/miperfil.html">Mi perfil</a></li>
-                                    <li><a></a></li>
-                                    <li><a class="btn alert-info" href="#">Buscador</a></li>
-                                    <li><a></a></li>
-                                    <li><a class="btn alert-danger" href="/redsocialcolaborativaclientangularjs/logout.html">Cerrar Sesión</a></li>
-                                </ul>
+            <div class="container">
+                <!-- Static navbar -->
+                <nav class="navbar navbar-default">
+                    <div class="container-fluid">
+                        <div id="navbar" class="navbar-collapse collapse">
+                            <ul class="nav navbar-nav">
+                                <li><a class="btn alert-success" href="/redsocialcolaborativaclientangularjs/miperfil.html">Mi perfil</a></li>
+                                <li><a></a></li>
+                                <li><a class="btn alert-info" href="#">Buscador</a></li>
+                                <li><a></a></li>
+                                <li><a class="btn alert-danger" href="/redsocialcolaborativaclientangularjs/logout.html">Cerrar Sesión</a></li>
+                            </ul>
 
-                                <ul class="nav navbar-nav navbar-right">
-                                    <li class="active"><h3 class="badge" id="conectado">Conectado como: {{username}}</h3></li>
-                                </ul>
-                            </div><!--/.nav-collapse -->
-                        </div><!--/.container-fluid -->
-                    </nav>
+                            <ul class="nav navbar-nav navbar-right">
+                                <li class="active"><h3 class="badge" id="conectado">Conectado como: {{username}}</h3></li>
+                            </ul>
+                        </div><!--/.nav-collapse -->
+                    </div><!--/.container-fluid -->
+                </nav>
 
-                    <nav class="navbar">
-                        
-                        <div class="container">
+                <nav class="navbar">
 
-                            <!-- Trigger the modal with a button -->
-                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Solicitudes de amistad pendientes: {{numero}}</button>
-
-                            <!-- Modal -->
-                            <div class="modal fade" id="myModal" role="dialog">
-                                <div class="modal-dialog">
-
-                                    <!-- Modal content-->
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h4 class="modal-title">Solicitudes de amistad pendientes</h4>
-                                        </div>
-                                        <div class="modal-body panel-heading">
-                                            <div class="panel-body" ng-repeat="peticion in peticiones">
-                                                Emisor: {{peticion.emisor}}
-                                                <button class="btn btn-default pull-right" type="button" value="aceptar" id="aceptar" ng-click="confirmarpeticion(peticion.idPeticion)">
-                                                    Aceptar
-                                                </button>
-                                                <button class="btn btn-default pull-right" type="button" value="eliminar" id="eliminar" >
-                                                    Eliminar
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">Volver</button>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-
-                        </div>
-
-                    </nav>
-
-                    <!-- Main component for a primary marketing message or call to action -->
-
-                    <div class="jumbotron" >
-                        <h2 id="username">Perfil de {{username}}</h2>
-                        <h3 id="nivel">Máximo nivel completado: {{nivel}}</h3>
-                        <h3 id="nombrecompleto">{{nombre}} {{apellidos}}</h3>
-                        <img class="img-thumbnail" height="200" width="300" ng-src="data:image/JPEG;base64,{{foto}}">
-                        <h3></h3>
-                        <button class="btn btn-primary" type="button" value="actualizar" id="actualizar">Actualizar perfil</button>
-                    </div>
-
-                </div> <!-- /container -->
-
-                <section>
                     <div class="container">
 
-                        <div id="vias" class="panel panel-default">
-                            <div class="panel-heading" id="usernamelistvias">Mis vias </div>
-                            <div class="panel-body" ng-repeat="via in vias">{{via.nombre}}
-                                <button class="btn btn-default pull-right" type="button" value="verficha" id="{{via.id_via}}">
-                                    Ver ficha
-                                </button>
-                            </div>
-                        </div>
+                        <!-- Trigger the modal with a button -->
+                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Solicitudes de amistad pendientes: {{numero}}</button>
 
-                        <div id="amigos" class="panel panel-default">
-                            <div class="panel-heading" id="usernamelistamigos">Mis amigos </div>
-                            <div class="panel-body" ng-repeat="amigo in amigos">{{amigo.username}}
-                                <button class="btn btn-default pull-right" type="button" value="verficha" id="verfichaamigo">
-                                    Ver perfil
-                                </button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="myModal" role="dialog">
+                            <div class="modal-dialog">
+
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">Solicitudes de amistad pendientes</h4>
+                                    </div>
+                                    <div class="modal-body panel-heading">
+                                        <div class="panel-body" ng-repeat="peticion in peticiones">
+                                            Emisor: {{peticion.emisor}}
+                                            <button class="btn btn-default pull-right" type="button" value="aceptar" id="aceptar" ng-click="confirmarpeticion(peticion.idPeticion)">
+                                                Aceptar
+                                            </button>
+                                            <button class="btn btn-default pull-right" type="button" value="eliminar" id="eliminar" >
+                                                Eliminar
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Volver</button>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
 
                     </div>
-                </section>
-            
+
+                </nav>
+
+                <!-- Main component for a primary marketing message or call to action -->
+
+                <div class="jumbotron" >
+                    <h2 id="username">Perfil de {{username}}</h2>
+                    <h3 id="nivel">Máximo nivel completado: {{nivel}}</h3>
+                    <h3 id="nombrecompleto">{{nombre}} {{apellidos}}</h3>
+                    <img class="img-thumbnail" height="200" width="300" ng-src="data:image/JPEG;base64,{{foto}}">
+                    <h3></h3>
+                    <button class="btn btn-primary" type="button" value="actualizar" id="actualizar" onclick="window.location.href='/redsocialcolaborativaclientangularjs/actualizaperfil.html' ">Actualizar perfil</button>
+                </div>
+
+            </div> <!-- /container -->
+
+            <section>
+                <div class="container">
+
+                    <div id="vias" class="panel panel-default">
+                        <div class="panel-heading" id="usernamelistvias">Mis vias </div>
+                        <div class="panel-body" ng-repeat="via in vias">{{via.nombre}}
+                            <button class="btn btn-default pull-right" type="button" value="verficha" id="{{via.id_via}}" >
+                                Ver ficha
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="amigos" class="panel panel-default">
+                        <div class="panel-heading" id="usernamelistamigos">Mis amigos </div>
+                        <div class="panel-body" ng-repeat="amigo in amigos">{{amigo.username}}
+                            <button class="btn btn-default pull-right" type="button" value="verficha" id="{{amigo.username}}" ng-click="redirige(amigo.username)">
+                                Ver perfil
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
         </div>
 
         <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
