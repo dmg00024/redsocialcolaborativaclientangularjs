@@ -21,6 +21,8 @@ app.config(['$httpProvider', function($httpProvider){
 
 app.controller('login', function ($scope, $http)
 {   
+    $scope.failLogin=true;
+    
     $scope.inicioSesion = function ()
     {      
         $http({
@@ -31,13 +33,14 @@ app.controller('login', function ($scope, $http)
                 Authorization: "Basic " + btoa($scope.username + ":" + $scope.password)
             }
 
-        }).then(function succes(json)
+        }).then(function success(json)
         {
+            $scope.failLogin=false;
             $scope.username=json.data.username;
             location.href = '/redsocialcolaborativaclientangularjs/miperfil.html';
 
         }, function error(json) {
-            alert("Usuario y/o contraseña incorrectos");
+            $scope.failLogin=true;
         });
     };
     
@@ -178,7 +181,17 @@ app.controller('miperfil', function ($scope, $http)
 app.controller('logoutcontroller', function ($scope) 
 {   
     $scope.logout = function ()
-    {        
+    {
+        var cookies = document.cookie.split(";");
+
+        for (var i = 0; i < cookies.length; i++) 
+        {
+            var cookie = cookies[i];
+            var eqPos = cookie.indexOf("=");
+            var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+            document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+        }
+    
         location.href='/redsocialcolaborativaclientangularjs/index.html';
     };
 });

@@ -21,36 +21,57 @@ and open the template in the editor.
         <link rel="stylesheet" href="lib/simple-line-icons/css/simple-line-icons.css">
         <link rel="stylesheet" href="lib/device-mockups/device-mockups.min.css">
 
-       
+
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.3/angular.min.js"></script>
         <script src="js/login.js"></script>
-        
+
     </head>
 
     <body>
         <div ng-app="authentication" class="container">
 
-            <form class="form-signin col-lg-6 col-lg-offset-3">
-                
+            <form class="form-signin col-lg-6 col-lg-offset-3" ng-controller="login">
+
                 <h2 class="form-signin-heading">Por favor inicie sesión</h2>
                 <label for="inputEmail" class="sr-only">Nombre de usuario</label>
                 <input type="text" id="inputEmail" class="form-control" placeholder="usuario" required ng-model="username"/>
                 <p></p>
                 <label for="inputPassword" class="sr-only">Contraseña</label>
                 <input type="password" id="inputPassword" class="form-control" placeholder="contraseña" required ng-model="password"/>
-                
+
                 <div class="checkbox">
                     <label>
                         <input type="checkbox" value="remember-me"> Recordar
                     </label>
                 </div>
-             
-                <button class="btn btn-success btn-lg btn-block" type="submit" ng-controller="login" ng-click="inicioSesion()">Iniciar sesión</button>
+
+                <button class="btn btn-success btn-lg btn-block" type="submit" data-toggle="modal" data-target="#myModal" ng-click="inicioSesion()">Iniciar sesión</button>
                 <p> </p>
-                <button type="button" class="btn btn-primary" onclick="window.location.href='/redsocialcolaborativaclientangularjs/index.html' ">Volver</button>
+                <button type="button" class="btn btn-primary" onclick="window.location.href = '/redsocialcolaborativaclientangularjs/index.html'">Volver</button>
                 <p> </p>
+
+                <!-- Modal -->
                 
+                <div id="myModal" class="modal fade" role="dialog" ng-show="failLogin">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content" >
+                            <div class="modal-header">
+                                <div class="alert alert-danger">
+                                    Usuario y/o contraseña incorrectos.
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Volver</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
             </form>
+
+            <div></div>
 
         </div> <!-- /container -->
 

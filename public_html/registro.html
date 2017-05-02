@@ -25,7 +25,7 @@
         <div class="container" ng-app="registro">
             <h1 class="col-xs-8 text-info">Solicitud de registro</h1>
             <p></p>
-            <form> 
+            <form ng-controller="solicitud"> 
 
                 <div class="col-xs-8">
 
@@ -53,12 +53,50 @@
                         <label for="confPassword">Repite contraseña:</label>
                         <input type="password" class="form-control" id="confPassword" placeholder="Repite contraseña" ng-model="confPassword">
                     </div>
-                    <button type="submit" class="btn btn-success" ng-controller="solicitud" ng-click="registro()">Confirmar</button>
+                    <button type="submit" class="btn btn-success" data-toggle="modal" data-target="#myModal" ng-click="registro()">Confirmar</button>
                     <a href="/redsocialcolaborativaclientangularjs/index.html" class="btn btn-primary" role="button">Volver</a>
                 </div>
 
-                <div class="col-xs-8"></div>
+                <div class="col-xs-8"></div>    
+                
+                <div id="myModal" class="modal fade" role="dialog" >
+                    <div class="modal-dialog" >
+                        <!-- Modal content-->
+                        <div class="modal-content" ng-show="usuarioNoDisponible">
+                            <div class="modal-header">
+                                <div class="alert alert-danger">
+                                    {{mensaje}}
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Volver</button>
+                            </div>
+                        </div>
+                        
+                        <div class="modal-content" ng-show="comprobarDatos">
+                            <div class="modal-header">
+                                <div class="alert alert-warning">
+                                    {{mensaje}}
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Volver</button>
+                            </div>
+                        </div>
 
+                        <div class="modal-content" ng-show="revisarCorreo">
+                            <div class="modal-header">
+                                <div class="alert alert-info">
+                                    {{mensaje}}
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal" onclick="window.location.href='/redsocialcolaborativaclientangularjs/index.html'">Volver</button>
+                            </div>
+                        </div>                        
+                    </div>
+
+                </div>
 
             </form>
         </div>
