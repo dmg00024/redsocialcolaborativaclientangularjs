@@ -38,7 +38,7 @@
                             </ul>
 
                             <ul class="nav navbar-nav navbar-right">
-                                <li class="active"><h3 class="badge" id="conectado">Conectado como: {{username}}</h3></li>
+                                <li class="active"><h3 class="badge" id="conectado">Conectado como: <text ng-bind="username"></text></h3></li>
                             </ul>
                         </div><!--/.nav-collapse -->
                     </div><!--/.container-fluid -->
@@ -49,7 +49,7 @@
                     <div class="container">
 
                         <!-- Trigger the modal with a button -->
-                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Solicitudes de amistad pendientes: {{numero}}</button>
+                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Solicitudes de amistad pendientes: <text ng-bind="numero"></text></button>
 
                         <!-- Modal -->
                         <div class="modal fade" id="myModal" role="dialog">
@@ -62,7 +62,7 @@
                                     </div>
                                     <div class="modal-body panel-heading">
                                         <div class="panel-body" ng-repeat="peticion in peticiones">
-                                            Emisor: {{peticion.emisor}}
+                                            Emisor: <text ng-bind="peticion.emisor"></text>
                                             <button class="btn btn-default pull-right" type="button" value="aceptar" id="aceptar" ng-click="confirmarpeticion(peticion.idPeticion)">
                                                 Aceptar
                                             </button>
@@ -86,9 +86,9 @@
                 <!-- Main component for a primary marketing message or call to action -->
 
                 <div class="jumbotron" >
-                    <h2 id="username">Perfil de {{username}}</h2>
-                    <h3 id="nivel">Máximo nivel completado: {{nivel}}</h3>
-                    <h3 id="nombrecompleto">{{nombre}} {{apellidos}}</h3>
+                    <h2 id="username">Perfil de <text ng-bind="username"></text></h2>
+                    <h3 id="nivel">Máximo nivel completado: <text ng-bind="nivel"></text></h3>
+                    <h3 id="nombrecompleto"><text ng-bind="nombre"></text> <text ng-bind="apellidos"></text></h3>
                     <img class="img-thumbnail" height="200" width="300" ng-src="data:image/JPEG;base64,{{foto}}">
                     <h3></h3>
                     <button class="btn btn-primary" type="button" value="actualizar" id="actualizar" onclick="window.location.href='/redsocialcolaborativaclientangularjs/actualizaperfil.html' ">Actualizar perfil</button>
@@ -101,7 +101,7 @@
 
                     <div id="vias" class="panel panel-default">
                         <div class="panel-heading" id="usernamelistvias">Mis vias </div>
-                        <div class="panel-body" ng-repeat="via in vias">{{via.nombre}}
+                        <div class="panel-body" ng-repeat="via in vias"><text ng-bind="via.nombre"></text>
                             <button class="btn btn-default pull-right" type="button" value="verficha" id="{{via.id_via}}" >
                                 Ver ficha
                             </button>
@@ -110,7 +110,7 @@
 
                     <div id="amigos" class="panel panel-default">
                         <div class="panel-heading" id="usernamelistamigos">Mis amigos </div>
-                        <div class="panel-body" ng-repeat="amigo in amigos">{{amigo.username}}
+                        <div class="panel-body" ng-repeat="amigo in amigos"><text ng-bind="amigo.username"></text>
                             <button class="btn btn-default pull-right" type="button" value="verficha" id="{{amigo.username}}" ng-click="redirige(amigo.username)">
                                 Ver perfil
                             </button>

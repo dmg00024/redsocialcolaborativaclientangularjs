@@ -51,15 +51,19 @@ and open the template in the editor.
                 <p> </p>
 
                 <!-- Modal -->
-                
-                <div id="myModal" class="modal fade" role="dialog" ng-show="failLogin">
+
+                <div id="myModal" class="modal fade" role="dialog">
                     <div class="modal-dialog">
                         <!-- Modal content-->
-                        <div class="modal-content" >
+                        <div class="modal-content" ng-show="success">
                             <div class="modal-header">
-                                <div class="alert alert-danger">
-                                    Usuario y/o contraseña incorrectos.
-                                </div>
+                                <div class="alert alert-info" ng-bind="mensaje"></div>
+                            </div>
+                        </div>
+
+                        <div class="modal-content" ng-show="fail">
+                            <div class="modal-header">
+                                <div class="alert alert-danger" ng-bind="mensaje"></div>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Volver</button>
@@ -71,7 +75,13 @@ and open the template in the editor.
 
             </form>
 
-            <div></div>
+            <div class="ec-stars-wrapper">
+                <a href="#" data-value="1" title="Votar con 1 estrellas">&#9733;</a>
+                <a href="#" data-value="2" title="Votar con 2 estrellas">&#9733;</a>
+                <a href="#" data-value="3" title="Votar con 3 estrellas">&#9733;</a>
+                <a href="#" data-value="4" title="Votar con 4 estrellas">&#9733;</a>
+                <a href="#" data-value="5" title="Votar con 5 estrellas">&#9733;</a>
+            </div>
 
         </div> <!-- /container -->
 

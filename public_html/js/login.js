@@ -4,71 +4,92 @@
  * and open the template in the editor.
  */
 
+function getBase64(file) {
+    var reader = new FileReader();
+    reader.readAsDataURL(file);
+
+    reader.onload = function () {
+        console.log(reader.result);
+        //alert(reader.result);
+        return reader.result;
+    };
+    reader.onerror = function (error) {
+        console.log('Error: ', error);
+    };
+
+    return reader.result;
+}
+
+
 function getParameterByName(name) {
     name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
     var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-    results = regex.exec(location.search);
+            results = regex.exec(location.search);
     return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
 
 var app = angular.module('authentication', []);
 
-app.config(['$httpProvider', function($httpProvider){
+app.config(['$httpProvider', function ($httpProvider) {
         $httpProvider.defaults.xsrfCookieName = 'csrftoken';
         $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
         $httpProvider.defaults.withCredentials = true;
     }]);
 
 app.controller('login', function ($scope, $http)
-{   
-    $scope.failLogin=true;
-    
+{
+    $scope.fail = false;
+    $scope.success = false;
+    $scope.mensaje = null;
+
     $scope.inicioSesion = function ()
-    {      
+    {
         $http({
             method: 'GET',
             url: 'http://localhost:8080/RedSocialColaborativaRESTFUL/username/',
-            
             headers: {
                 Authorization: "Basic " + btoa($scope.username + ":" + $scope.password)
             }
 
         }).then(function success(json)
         {
-            $scope.failLogin=false;
-            $scope.username=json.data.username;
+            $scope.fail = false;
+            $scope.success = true;
+            $scope.username = json.data.username;
+            $scope.mensaje = "Usuario y contraseña correctos. Espere por favor...";
             location.href = '/redsocialcolaborativaclientangularjs/miperfil.html';
 
         }, function error(json) {
-            $scope.failLogin=true;
+            $scope.fail = true;
+            $scope.success = false;
+            $scope.mensaje = "Usuario y/o contraseña incorrectos.";
         });
     };
-    
+
     $scope.recuerdaSesion = function ()
-    {      
+    {
         $http({
             method: 'GET',
             url: 'http://localhost:8080/RedSocialColaborativaRESTFUL/username/'
 
         }).then(function succes(json)
         {
-            $scope.username=json.data.username;
+            $scope.username = json.data.username;
 
         }, function error(json) {
-            alert("Usuario y/o contraseña incorrectos");
+            //alert("Usuario y/o contraseña incorrectos");
         });
     };
-    
+
 });
 
-app.controller('miperfil', function ($scope, $http) 
-{   
+app.controller('miperfil', function ($scope, $http)
+{
     $scope.miperfil = function ()
-    {     
+    {
         $http({
             method: 'GET',
             url: 'http://localhost:8080/RedSocialColaborativaRESTFUL/perfil/',
-            
             headers: {
                 'Content-Type': 'application/json'
             }
@@ -76,134 +97,128 @@ app.controller('miperfil', function ($scope, $http)
         }).then(function success(json)
         {
             $scope.username = json.data.username;
-            $scope.nivel=json.data.nivel;
-            $scope.nombre=json.data.nombre;
-            $scope.apellidos=json.data.apellidos;
-            $scope.foto=json.data.foto;
+            $scope.nivel = json.data.nivel;
+            $scope.nombre = json.data.nombre;
+            $scope.apellidos = json.data.apellidos;
+            $scope.foto = json.data.foto;
 
         }, function error(json) {
-            alert("Sesión caducada. Vuelva a iniciar sesión.");
+            //alert("Sesión caducada. Vuelva a iniciar sesión.");
         });
-        
+
         $http({
             method: 'GET',
             url: 'http://localhost:8080/RedSocialColaborativaRESTFUL/perfil/numeropeticiones',
-            
             headers: {
                 'Content-Type': 'application/json'
             }
 
         }).then(function success(json)
         {
-            $scope.numero=json.data.numeroPendientes;
+            $scope.numero = json.data.numeroPendientes;
         }, function error(json) {
-            alert("Sesión caducada. Vuelva a iniciar sesión.");
+            //alert("Sesión caducada. Vuelva a iniciar sesión.");
         });
-        
+
         $http({
             method: 'GET',
             url: 'http://localhost:8080/RedSocialColaborativaRESTFUL/perfil/peticiones',
-            
             headers: {
                 'Content-Type': 'application/json'
             }
 
         }).then(function success(json)
         {
-            $scope.peticiones=json.data;
+            $scope.peticiones = json.data;
         }, function error(json) {
-            
+
         });
-        
+
         $http({
             method: 'GET',
             url: 'http://localhost:8080/RedSocialColaborativaRESTFUL/perfil/vias',
-            
             headers: {
                 'Content-Type': 'application/json'
             }
 
         }).then(function success(json)
         {
-            $scope.vias=json.data;
+            $scope.vias = json.data;
         }, function error(json) {
-            alert("Sesión caducada. Vuelva a iniciar sesión.");
+            //alert("Sesión caducada. Vuelva a iniciar sesión.");
         });
-        
-        
+
+
         $http({
             method: 'GET',
             url: 'http://localhost:8080/RedSocialColaborativaRESTFUL/perfil/amigos',
-            
             headers: {
                 'Content-Type': 'application/json'
             }
 
         }).then(function success(json)
         {
-            $scope.amigos=json.data;
+            $scope.amigos = json.data;
         }, function error(json) {
-            alert("Sesión caducada. Vuelva a iniciar sesión.");
+            //alert("Sesión caducada. Vuelva a iniciar sesión.");
         });
-        
+
     };
-    
-    $scope.confirmarpeticion=function(idPeticion)
-    {   
+
+    $scope.confirmarpeticion = function (idPeticion)
+    {
         $http({
             method: 'PUT',
             url: 'http://localhost:8080/RedSocialColaborativaRESTFUL/perfil/peticiones/',
-            
             headers: {
                 'Content-Type': 'application/json'
             },
-            
             data: {
-                idPeticion:idPeticion,
-                conf:true
+                idPeticion: idPeticion,
+                conf: true
             }
 
         }).then(function success(json)
         {
-            location.href='/redsocialcolaborativaclientangularjs/miperfil.html';
+            location.href = '/redsocialcolaborativaclientangularjs/miperfil.html';
         }, function error(json) {
-            alert("Sesión caducada. Vuelva a iniciar sesión.");
+            //alert("Sesión caducada. Vuelva a iniciar sesión.");
         });
-        
+
     };
-    
-    $scope.redirige=function(username)
+
+    $scope.redirige = function (username)
     {
-        location.href='/redsocialcolaborativaclientangularjs/perfil.html?username='+username;
+        location.href = '/redsocialcolaborativaclientangularjs/perfil.html?username=' + username;
     };
 });
-   
-app.controller('logoutcontroller', function ($scope) 
-{   
+
+app.controller('logoutcontroller', function ($scope)
+{
     $scope.logout = function ()
     {
         var cookies = document.cookie.split(";");
 
-        for (var i = 0; i < cookies.length; i++) 
+        for (var i = 0; i < cookies.length; i++)
         {
             var cookie = cookies[i];
             var eqPos = cookie.indexOf("=");
             var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
             document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
         }
-    
-        location.href='/redsocialcolaborativaclientangularjs/index.html';
+
+        location.href = '/redsocialcolaborativaclientangularjs/index.html';
     };
 });
 
 
 app.controller('perfil', function ($scope, $http)
 {
-    
+
     $scope.datosperfil = function ()
     {
-        var username=getParameterByName("username");
-        
+        var username = getParameterByName("username");
+
         $http({
             method: 'GET',
             url: "http://localhost:8080/RedSocialColaborativaRESTFUL/perfil/" + username
@@ -211,13 +226,128 @@ app.controller('perfil', function ($scope, $http)
         }).then(function success(json)
         {
             $scope.usernameamigo = json.data.username;
-            $scope.nivel=json.data.nivel;
-            $scope.nombre=json.data.nombre;
-            $scope.apellidos=json.data.apellidos;
-            $scope.foto=json.data.foto;
-            
+            $scope.nivel = json.data.nivel;
+            $scope.nombre = json.data.nombre;
+            $scope.apellidos = json.data.apellidos;
+            $scope.foto = json.data.foto;
+
         }, function error(response) {
 
         });
+    };
+});
+
+app.controller('actualizarperfil', function ($scope, $http)
+{
+    $scope.actualizacioncorrecta = false;
+
+    $scope.datosperfil = function ()
+    {
+        $http({
+            method: 'GET',
+            url: 'http://localhost:8080/RedSocialColaborativaRESTFUL/perfil/',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+
+        }).then(function success(json)
+        {
+            $scope.username = json.data.username;
+            $scope.nombre = json.data.nombre;
+            $scope.apellidos = json.data.apellidos;
+            $scope.mail = json.data.mail;
+            $scope.foto = json.data.foto;
+
+        }, function error(json) {
+
+        });
+    };
+
+    $scope.actualizaperfil = function ()
+    {
+        $scope.actualizacioncorrecta = false;
+        $scope.confirmaemail = false;
+        $scope.cargando = true;
+
+        var fichero;
+        var file = null;
+        file = document.getElementById('fotoperfil').files[0];
+
+        if (file === undefined)
+        {
+            $http({
+                method: 'PUT',
+                url: 'http://localhost:8080/RedSocialColaborativaRESTFUL/perfil/',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                data: {
+                    nombre: $scope.nombre,
+                    apellidos: $scope.apellidos,
+                    mail: $scope.mail,
+                    confMail: $scope.confMail,
+                    dir_foto: null
+                }
+
+            }).then(function success(json)
+            {
+                $scope.actualizacioncorrecta = true;
+                $scope.confirmaemail = false;
+                $scope.cargando = false;
+                $scope.mensaje = "Actualización correcta";
+
+            }, function error(json) {
+                $scope.actualizacioncorrecta = false;
+                $scope.confirmaemail = true;
+                $scope.cargando = false;
+                $scope.mensaje = "Por favor confirme email y confirme de nuevo";
+            });
+        } else
+        {
+            var reader = new FileReader();
+
+            reader.readAsDataURL(file);
+
+            reader.onload = function () {
+                
+                fichero = reader.result;
+
+                $http({
+                    method: 'PUT',
+                    url: 'http://localhost:8080/RedSocialColaborativaRESTFUL/perfil/',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    data: {
+                        nombre: $scope.nombre,
+                        apellidos: $scope.apellidos,
+                        mail: $scope.mail,
+                        confMail: $scope.confMail,
+                        dir_foto: fichero
+                    }
+
+                }).then(function success(json)
+                {
+                    $scope.actualizacioncorrecta = true;
+                    $scope.confirmaemail = false;
+                    $scope.cargando = false;
+                    $scope.mensaje = "Actualización correcta";
+                    
+                }, function error(json) {
+                    $scope.actualizacioncorrecta = false;
+                    $scope.confirmaemail = true;
+                    $scope.cargando = false;
+                    $scope.mensaje = "Por favor confirme email e inténtelo de nuevo";
+                });
+
+            };
+
+            reader.onerror = function (error) {
+                console.log('Error: ', error);
+
+            };
+
+        }
+
     };
 });

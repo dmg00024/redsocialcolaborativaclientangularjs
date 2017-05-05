@@ -30,31 +30,31 @@
                 <div class="col-xs-8">
 
                     <div class="form-group">
-                        <label for="email">Elige un nombre de usuario:</label>
+                        <label for="email">Elige un nombre de usuario</label>
                         <input type="text" class="form-control" id="username" placeholder="Introduce un nombre de usuario" ng-model="username">
                     </div>
 
                     <div class="form-group">
-                        <label for="email">Email:</label>
+                        <label for="email">Email</label>
                         <input type="email" class="form-control" id="email" placeholder="Email" ng-model="mail">
                     </div>
 
                     <div class="form-group">
-                        <label for="email">Repite email:</label>
+                        <label for="email">Repite email</label>
                         <input type="email" class="form-control" id="confMail" placeholder="Repite email" ng-model="confMail">
                     </div>
 
                     <div class="form-group">
-                        <label for="password">Introduce una contraseña:</label>
+                        <label for="password">Introduce una contraseña</label>
                         <input type="password" class="form-control" id="password" placeholder="Contraseña" ng-model="password">
                     </div>
 
                     <div class="form-group">
-                        <label for="confPassword">Repite contraseña:</label>
+                        <label for="confPassword">Repite contraseña</label>
                         <input type="password" class="form-control" id="confPassword" placeholder="Repite contraseña" ng-model="confPassword">
                     </div>
                     <button type="submit" class="btn btn-success" data-toggle="modal" data-target="#myModal" ng-click="registro()">Confirmar</button>
-                    <a href="/redsocialcolaborativaclientangularjs/index.html" class="btn btn-primary" role="button">Volver</a>
+                    <button type="button" class="btn btn-primary" onclick="window.location.href='/redsocialcolaborativaclientangularjs/index.html' ">Volver</button>
                 </div>
 
                 <div class="col-xs-8"></div>    
@@ -64,9 +64,7 @@
                         <!-- Modal content-->
                         <div class="modal-content" ng-show="usuarioNoDisponible">
                             <div class="modal-header">
-                                <div class="alert alert-danger">
-                                    {{mensaje}}
-                                </div>
+                                <div class="alert alert-danger" ng-bind="mensaje"></div>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Volver</button>
@@ -75,9 +73,7 @@
                         
                         <div class="modal-content" ng-show="comprobarDatos">
                             <div class="modal-header">
-                                <div class="alert alert-warning">
-                                    {{mensaje}}
-                                </div>
+                                <div class="alert alert-warning" ng-bind="mensaje"></div>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Volver</button>
@@ -86,9 +82,7 @@
 
                         <div class="modal-content" ng-show="revisarCorreo">
                             <div class="modal-header">
-                                <div class="alert alert-info">
-                                    {{mensaje}}
-                                </div>
+                                <div class="alert alert-info" ng-bind="mensaje"></div>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal" onclick="window.location.href='/redsocialcolaborativaclientangularjs/index.html'">Volver</button>

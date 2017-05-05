@@ -15,6 +15,7 @@
         <link rel="stylesheet" href="lib/font-awesome/css/font-awesome.min.css">
         <link rel="stylesheet" href="lib/simple-line-icons/css/simple-line-icons.css">
         <link rel="stylesheet" href="lib/device-mockups/device-mockups.min.css">
+        <link rel="stylesheet" href="css/loader.css">
 
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.3/angular.min.js"></script>
         <script src="js/login.js"></script>
@@ -22,75 +23,109 @@
 
     <body>
 
-        <div ng-app="authentication" ng-controller="login" ng-init="recuerdaSesion()"> 
-            
-            <div class="container">
-                <!-- Static navbar -->
-                <nav class="navbar navbar-default">
-                    <div class="container-fluid">
-                        <div id="navbar" class="navbar-collapse collapse">
-                            <ul class="nav navbar-nav">
-                                <li><a class="btn alert-success" href="/redsocialcolaborativaclientangularjs/miperfil.html">Mi perfil</a></li>
-                                <li><a></a></li>
-                                <li><a class="btn alert-info" href="#">Buscador</a></li>
-                                <li><a></a></li>
-                                <li><a class="btn alert-danger" href="/redsocialcolaborativaclientangularjs/logout.html">Cerrar Sesión</a></li>
-                            </ul>
+        <div ng-app="authentication">
+            <div ng-controller="login" ng-init="recuerdaSesion()"> 
 
-                            <ul class="nav navbar-nav navbar-right">
-                                <li class="active"><h3 class="badge" id="conectado">Conectado como: {{username}}</h3></li>
-                            </ul>
-                        </div><!--/.nav-collapse -->
-                    </div><!--/.container-fluid -->
-                </nav>
-            </div>
-        </div>
-        
-        <div class="container" ng-app="registro">
-            <h1 class="col-xs-8 text-info">Actualizar datos del perfil</h1>
-            <p></p>
-            <form> 
+                <div class="container">
+                    <!-- Static navbar -->
+                    <nav class="navbar navbar-default">
+                        <div class="container-fluid">
+                            <div id="navbar" class="navbar-collapse collapse">
+                                <ul class="nav navbar-nav">
+                                    <li><a class="btn alert-success" href="/redsocialcolaborativaclientangularjs/miperfil.html">Mi perfil</a></li>
+                                    <li><a></a></li>
+                                    <li><a class="btn alert-info" href="#">Buscador</a></li>
+                                    <li><a></a></li>
+                                    <li><a class="btn alert-danger" href="/redsocialcolaborativaclientangularjs/logout.html">Cerrar Sesión</a></li>
+                                </ul>
 
-                <div class="col-xs-8">
-
-                    <div class="form-group">
-                        <label for="email">Elige un nombre de usuario:</label>
-                        <input type="text" class="form-control" id="username" placeholder="Introduce un nombre de usuario" ng-model="username">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="email">Email:</label>
-                        <input type="email" class="form-control" id="email" placeholder="Email" ng-model="mail">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="email">Repite email:</label>
-                        <input type="email" class="form-control" id="confMail" placeholder="Repite email" ng-model="confMail">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="password">Introduce una contraseña:</label>
-                        <input type="password" class="form-control" id="password" placeholder="Contraseña" ng-model="password">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="ejemplo_archivo_1">Adjuntar un archivo</label>
-                        <input type="file" id="ejemplo_archivo_1">
-                        <p class="help-block">Ejemplo de texto de ayuda.</p>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="confPassword">Repite contraseña:</label>
-                        <input type="password" class="form-control" id="confPassword" placeholder="Repite contraseña" ng-model="confPassword">
-                    </div>
-                    <button type="submit" class="btn btn-success">Confirmar</button>
-                    <a href="/redsocialcolaborativaclientangularjs/miperfil.html" class="btn btn-primary" role="button">Volver</a>
+                                <ul class="nav navbar-nav navbar-right">
+                                    <li class="active"><h3 class="badge" id="conectado">Conectado como: {{username}}</h3></li>
+                                </ul>
+                            </div><!--/.nav-collapse -->
+                        </div><!--/.container-fluid -->
+                    </nav>
                 </div>
+            </div>
 
-                <div class="col-xs-8"></div>
+            <div class="container">
+                <h1 class="col-xs-8 text-info">Actualizar datos del perfil</h1>
+                <button type="button" class="btn btn-success">Modificar contraseña</button>
+                <p></p>
+
+                <form ng-controller="actualizarperfil" ng-init="datosperfil()"> 
 
 
-            </form>
+                    <div class="col-xs-8">
+
+                        <div class="form-group">
+                            <label for="nombre">Nombre</label>
+                            <input type="text" class="form-control" id="nombre" placeholder="Introduzca su nombre" ng-bind="nombre" ng-model="nombre">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="apellidos">Apellidos</label>
+                            <input type="text" class="form-control" id="apellidos" placeholder="Apellidos" ng-bind="apellidos" ng-model="apellidos">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" id="email" placeholder="Email" ng-bind="mail" ng-model="mail">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="confEmail">Por favor confirme su email</label>
+                            <input type="confEmail" class="form-control" id="confEmail" placeholder="Por favor confirme el email" ng-model="confMail">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="fotoperfil">Foto de perfil</label>
+                            <div>
+                                <img class="img-thumbnail" height="200" width="300" ng-src="data:image/JPEG;base64,{{foto}}">
+                            </div>
+                            <input type="file" id="fotoperfil">
+                            <p class="help-block"> </p>
+                        </div>
+
+                        <button type="submit" data-toggle="modal" data-target="#myModal" class="btn btn-success" ng-click="actualizaperfil()">Confirmar</button>
+                        <button type="button" class="btn btn-primary" onclick="window.location.href = '/redsocialcolaborativaclientangularjs/miperfil.html'">Volver</button>
+
+                        <div id="myModal" class="modal fade" role="dialog">
+                            <div class="modal-dialog">
+                                <!-- Modal content-->
+                                <div class="modal-content" id="loader" ng-show="cargando">
+                                    <div class="modal-header text-center">
+                                        <div class="loader"></div>
+                                        <h3>Cargando...</h3>
+                                    </div>
+                                </div>
+                                
+                                <div class="modal-content" ng-show="confirmaemail">
+                                    <div class="modal-header">
+                                        <div class="alert alert-warning" ng-bind="mensaje"></div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Volver</button>
+                                    </div>
+                                </div>
+                                
+                                <div class="modal-content" ng-show="actualizacioncorrecta">
+                                    <div class="modal-header">
+                                        <div class="alert alert-info" ng-bind="mensaje"></div>
+                                    </div>   
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="window.location.href='/redsocialcolaborativaclientangularjs/actualizaperfil.html' ">Volver</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-8"></div>
+
+                </form>
+            </div>
         </div>
 
         <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
