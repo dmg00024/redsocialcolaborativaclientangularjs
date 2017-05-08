@@ -309,7 +309,7 @@ app.controller('actualizarperfil', function ($scope, $http)
             reader.readAsDataURL(file);
 
             reader.onload = function () {
-                
+
                 fichero = reader.result;
 
                 $http({
@@ -332,7 +332,7 @@ app.controller('actualizarperfil', function ($scope, $http)
                     $scope.confirmaemail = false;
                     $scope.cargando = false;
                     $scope.mensaje = "Actualización correcta";
-                    
+
                 }, function error(json) {
                     $scope.actualizacioncorrecta = false;
                     $scope.confirmaemail = true;
@@ -349,5 +349,63 @@ app.controller('actualizarperfil', function ($scope, $http)
 
         }
 
+    };
+});
+
+app.controller('actualizarpassword', function ($scope, $http)
+{
+    $scope.cambiocorrecto=false;
+    $scope.autenticacion=false;
+    $scope.confirmacionpassword=false;
+    $scope.datos=false;
+    
+    $scope.actualizapassword = function ()
+    {
+        $http({
+            method: 'PUT',
+            url: 'http://localhost:8080/RedSocialColaborativaRESTFUL/perfil/password/',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            data: {
+                passwordActual: $scope.passwordActual,
+                newPassword: $scope.newPassword,
+                confPassword: $scope.confPassword
+            }
+
+        }).then(function success(json)
+        {
+            $scope.cambiocorrecto = true;
+            $scope.autenticacion = false;
+            $scope.confirmacionpassword = false;
+            $scope.datos = false;
+            $scope.mensaje = "Actualización correcta";
+        }, function error(json) {
+            if(json.status === 401)
+            {
+                $scope.cambiocorrecto = false;
+                $scope.autenticacion = true;
+                $scope.confirmacionpassword = false;
+                $scope.datos = false;
+                $scope.mensaje = "Por favor confirma tu contraseña actual";
+            }
+            else if(json.status === 400)
+            {
+                $scope.cambiocorrecto = false;
+                $scope.autenticacion = false;
+                $scope.confirmacionpassword = true;
+                $scope.datos = false;
+                
+                $scope.mensaje = "Debes escribir y confirmar la nueva contraseña";
+            }
+            else
+            {
+                $scope.cambiocorrecto = false;
+                $scope.autenticacion = false;
+                $scope.confirmacionpassword = false;
+                $scope.datos = true;
+                $scope.mensaje = "Introduce los datos correctamente";
+            }
+        });
     };
 });
