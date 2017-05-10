@@ -24,9 +24,9 @@
 
         <div ng-app="authentication" ng-controller="login" ng-init="recuerdaSesion()"> 
 
-            <div class="container">
+            <div class="container" ng-controller="perfil" ng-init="datosperfil()">
                 <!-- Static navbar -->
-                <nav class="navbar navbar-default">
+                <nav class="navbar navbar-default" >
                     <div class="container-fluid">
                         <div id="navbar" class="navbar-collapse collapse">
                             <ul class="nav navbar-nav">
@@ -46,22 +46,23 @@
 
                 <!-- Main component for a primary marketing message or call to action -->
 
-                
-                <div class="jumbotron" ng-controller="perfil" ng-init="datosperfil()">
-                    <h2 id="username">Perfil de <text ng-bind="usernameamigo"></text></h2>
-                    <h3 id="nivel">Máximo nivel completado: <text ng-bind="nivel"></text></h3>
-                    <h3 id="nombrecompleto"><text ng-bind="nombre"></text> <text ng-bind="apellidos"></text></h3>
-                    <img class="img-thumbnail" height="200" width="300" ng-src="data:image/JPEG;base64,{{foto}}">
-                    <h3></h3>
-                    <button class="btn btn-primary" type="button" value="enviarpeticion" id="actualizar">Enviar peticion de amistad</button>
+                <div>
+                    <div class="jumbotron" ng-init="datosperfil()">
+                        <h2 id="username">Perfil de <text ng-bind="usernameamigo"></text></h2>
+                        <h3 id="nivel">Máximo nivel completado: <text ng-bind="nivel"></text></h3>
+                        <h3 id="nombrecompleto"><text ng-bind="nombre"></text> <text ng-bind="apellidos"></text></h3>
+                        <img class="img-thumbnail" height="200" width="300" ng-src="data:image/JPEG;base64,{{foto}}">
+                        <h3></h3>
+                        <button class="btn btn-primary" type="button" value="enviarpeticion" id="actualizar">Enviar peticion de amistad</button>
+                    </div>
                 </div>
 
             </div> <!-- /container -->
 
-            <section ng-controller="perfil" ng-init="datosperfil()">
-                <div class="container">
+            <section ng-controller="perfil">
+                <div class="container" ng-init="datosperfil()">
 
-                    <div id="vias" class="panel panel-default">
+                    <div id="vias" class="panel panel-default" ng-init="viasamigo()">
                         <div class="panel-heading" id="usernamelistvias">Vias de <text ng-bind="usernameamigo"></text></div>
                         <div class="panel-body" ng-repeat="via in vias"><text ng-bind="via.nombre"></text>
                             <button class="btn btn-default pull-right" type="button" value="verficha" id="{{via.id_via}}">
@@ -70,10 +71,10 @@
                         </div>
                     </div>
 
-                    <div id="amigos" class="panel panel-default">
+                    <div id="amigos" class="panel panel-default" ng-init="amigosamigo()">
                         <div class="panel-heading" id="usernamelistamigos">Amigos de <text ng-bind="usernameamigo"></text> </div>
                         <div class="panel-body" ng-repeat="amigo in amigos"><text ng-bind="amigo.username"></text>
-                            <button class="btn btn-default pull-right" type="button" value="verperfil" id="verfichaamigo">
+                            <button class="btn btn-default pull-right" type="button" value="verperfil" id="verfichaamigo" ng-click="redirigePerfil(amigo.username)">
                                 Ver perfil
                             </button>
                         </div>

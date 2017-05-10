@@ -211,32 +211,6 @@ app.controller('logoutcontroller', function ($scope)
     };
 });
 
-
-app.controller('perfil', function ($scope, $http)
-{
-
-    $scope.datosperfil = function ()
-    {
-        var username = getParameterByName("username");
-
-        $http({
-            method: 'GET',
-            url: "http://localhost:8080/RedSocialColaborativaRESTFUL/perfil/" + username
-
-        }).then(function success(json)
-        {
-            $scope.usernameamigo = json.data.username;
-            $scope.nivel = json.data.nivel;
-            $scope.nombre = json.data.nombre;
-            $scope.apellidos = json.data.apellidos;
-            $scope.foto = json.data.foto;
-
-        }, function error(response) {
-
-        });
-    };
-});
-
 app.controller('actualizarperfil', function ($scope, $http)
 {
     $scope.actualizacioncorrecta = false;
@@ -406,6 +380,88 @@ app.controller('actualizarpassword', function ($scope, $http)
                 $scope.datos = true;
                 $scope.mensaje = "Introduce los datos correctamente";
             }
+        });
+    };
+});
+
+app.controller('perfil', function ($scope, $http)
+{
+    var username;
+    
+    $scope.datosperfil = function ()
+    {
+        username = getParameterByName("username");
+
+        $http({
+            method: 'GET',
+            url: "http://localhost:8080/RedSocialColaborativaRESTFUL/perfil/" + username +"/"
+
+        }).then(function success(json)
+        {
+            $scope.usernameamigo = json.data.username;
+            $scope.nivel = json.data.nivel;
+            $scope.nombre = json.data.nombre;
+            $scope.apellidos = json.data.apellidos;
+            $scope.foto = json.data.foto;
+
+        }, function error(response) {
+
+        });
+    };
+    
+    $scope.viasamigo=function()
+    {
+        username = getParameterByName("username");
+
+        $http({
+            method: 'GET',
+            url: "http://localhost:8080/RedSocialColaborativaRESTFUL/perfil/" + username + "/vias/"
+
+        }).then(function success(json)
+        {
+            $scope.vias=json.data;
+
+        }, function error(response) {
+
+        });
+    };
+    
+    $scope.amigosamigo=function()
+    {
+        username = getParameterByName("username");
+
+        $http({
+            method: 'GET',
+            url: "http://localhost:8080/RedSocialColaborativaRESTFUL/perfil/" + username + "/amigos/"
+
+        }).then(function success(json)
+        {
+            $scope.amigos=json.data;
+
+        }, function error(response) {
+
+        });
+    };
+    
+    $scope.redirigePerfil=function(usernamePerfil)
+    {
+        $http({
+            method: 'GET',
+            url: "http://localhost:8080/RedSocialColaborativaRESTFUL/username/"
+
+        }).then(function success(json)
+        {
+            if(json.data.username === usernamePerfil)
+            {
+                location.href = '/redsocialcolaborativaclientangularjs/miperfil.html';
+            }
+            else
+            {
+                location.href = '/redsocialcolaborativaclientangularjs/perfil.html?username=' + usernamePerfil;
+            }
+
+        }, function error(response) {
+
         });
     };
 });
