@@ -36,11 +36,12 @@ app.config(['$httpProvider', function ($httpProvider) {
         $httpProvider.defaults.withCredentials = true;
     }]);
 
-app.controller('login', function ($scope, $http)
+app.controller('login', function ($scope, $http, $rootScope)
 {
     $scope.fail = false;
     $scope.success = false;
     $scope.mensaje = null;
+    $scope.boton=true;
 
     $scope.inicioSesion = function ()
     {
@@ -56,6 +57,7 @@ app.controller('login', function ($scope, $http)
             $scope.fail = false;
             $scope.success = true;
             $scope.username = json.data.username;
+            $rootScope.username=$scope.username;
             $scope.mensaje = "Usuario y contraseña correctos. Espere por favor...";
             location.href = '/redsocialcolaborativaclientangularjs/miperfil.html';
 
@@ -75,6 +77,31 @@ app.controller('login', function ($scope, $http)
         }).then(function succes(json)
         {
             $scope.username = json.data.username;
+
+        }, function error(json) {
+            //alert("Usuario y/o contraseña incorrectos");
+        });
+    };
+    
+    $scope.compruebaAmistad=function()
+    {
+        $http({
+            method: 'GET',
+            url: 'http://localhost:8080/RedSocialColaborativaRESTFUL/perfil/amigos/'
+
+        }).then(function succes(json)
+        {
+            $scope.amigos=json.data;
+            
+            alert($scope.username);
+            
+            for(var i in $scope.amigos)
+            {
+                if($scope.username === $scope.amigos[i].username)
+                {
+                    $scope.boton=false;
+                }
+            }
 
         }, function error(json) {
             //alert("Usuario y/o contraseña incorrectos");
@@ -384,7 +411,7 @@ app.controller('actualizarpassword', function ($scope, $http)
     };
 });
 
-app.controller('perfil', function ($scope, $http)
+app.controller('perfil', function ($scope, $http, $rootScope)
 {
     var username;
     
@@ -445,23 +472,13 @@ app.controller('perfil', function ($scope, $http)
     
     $scope.redirigePerfil=function(usernamePerfil)
     {
-        $http({
-            method: 'GET',
-            url: "http://localhost:8080/RedSocialColaborativaRESTFUL/username/"
-
-        }).then(function success(json)
+        if(usernamePerfil === $rootScope.username)
         {
-            if(json.data.username === usernamePerfil)
-            {
-                location.href = '/redsocialcolaborativaclientangularjs/miperfil.html';
-            }
-            else
-            {
-                location.href = '/redsocialcolaborativaclientangularjs/perfil.html?username=' + usernamePerfil;
-            }
-
-        }, function error(response) {
-
-        });
+            location.href = '/redsocialcolaborativaclientangularjs/miperfil.html';
+        }
+        else
+        {
+            location.href = '/redsocialcolaborativaclientangularjs/perfil.html?username=' + usernamePerfil;
+        }
     };
 });
