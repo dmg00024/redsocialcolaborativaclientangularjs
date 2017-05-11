@@ -14,7 +14,7 @@ function getParameterByName(name) {
 
 var app = angular.module('perfil', []);
 
-app.controller('login', function ($scope, $http)
+app.controller('login', function ($scope, $http, $rootScope)
 {
     $scope.recuerdaSesion = function ()
     {
@@ -26,6 +26,7 @@ app.controller('login', function ($scope, $http)
         }).then(function succes(json)
         {
             $scope.username = json.data.username;
+            $rootScope.username=json.data.username;
 
         }, function error(json) {
             //alert("Usuario y/o contraseña incorrectos");
@@ -98,7 +99,7 @@ app.controller('vias', function ($scope, $http)
     };
 });
 
-app.controller('amigos', function ($scope, $http)
+app.controller('amigos', function ($scope, $http, $rootScope)
 {
     var username;
     
@@ -116,6 +117,19 @@ app.controller('amigos', function ($scope, $http)
         }, function error(json) {
             //alert("Sesión caducada. Vuelva a iniciar sesión.");
         });
+    };
+    
+    $scope.redirigePerfil=function(usernameAmigo)
+    {   
+        if(usernameAmigo === $rootScope.username)
+        {
+            location.href = '/redsocialcolaborativaclientangularjs/miperfil.html';
+        }
+        else
+        {
+            username=getParameterByName("username");
+            location.href = '/redsocialcolaborativaclientangularjs/perfil.html?username=' + username;
+        }
     };
 });
 

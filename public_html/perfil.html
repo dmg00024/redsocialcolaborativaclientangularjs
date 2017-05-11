@@ -49,33 +49,20 @@
                     <div class="container">
 
                         <!-- Trigger the modal with a button -->
-                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Solicitudes de amistad pendientes: <text ng-bind="numero"></text></button>
+                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Enviar solicitud de amistad</button>
 
                         <!-- Modal -->
                         <div class="modal fade" id="myModal" role="dialog">
                             <div class="modal-dialog">
-
                                 <!-- Modal content-->
                                 <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h4 class="modal-title">Solicitudes de amistad pendientes</h4>
-                                    </div>
                                     <div class="modal-body panel-heading">
-                                        <div class="panel-body" ng-repeat="peticion in peticiones">
-                                            Emisor: <text ng-bind="peticion.emisor"></text>
-                                            <button class="btn btn-default pull-right" type="button" value="aceptar" id="aceptar" ng-click="confirmarpeticion(peticion.idPeticion)">
-                                                Aceptar
-                                            </button>
-                                            <button class="btn btn-default pull-right" type="button" value="eliminar" id="eliminar" >
-                                                Eliminar
-                                            </button>
-                                        </div>
+                                        <div class="alert alert-success">Mensaje de alerta</div>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-default" data-dismiss="modal">Volver</button>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
 
@@ -100,7 +87,7 @@
                 <div class="container">
 
                     <div id="vias" class="panel panel-default" ng-controller="vias" ng-init="vias()">
-                        <div class="panel-heading" id="usernamelistvias">Mis vias </div>
+                        <div class="panel-heading" id="usernamelistvias">Vias realizadas </div>
                         <div class="panel-body" ng-repeat="via in vias"><text ng-bind="via.nombre"></text>
                             <button class="btn btn-default pull-right" type="button" value="verficha" id="{{via.id_via}}" >
                                 Ver ficha
@@ -109,9 +96,9 @@
                     </div>
 
                     <div id="amigos" class="panel panel-default" ng-controller="amigos" ng-init="amigos()">
-                        <div class="panel-heading" id="usernamelistamigos">Mis amigos </div>
+                        <div class="panel-heading" id="usernamelistamigos">Amigos </div>
                         <div class="panel-body" ng-repeat="amigo in amigos"><text ng-bind="amigo.username"></text>
-                            <button class="btn btn-default pull-right" type="button" value="verficha" id="{{amigo.username}}" ng-click="redirige(amigo.username)">
+                            <button class="btn btn-default pull-right" type="button" value="verficha" id="{{amigo.username}}" ng-click="redirigePerfil(amigo.username)">
                                 Ver perfil
                             </button>
                         </div>
