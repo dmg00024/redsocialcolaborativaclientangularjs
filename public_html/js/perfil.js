@@ -100,7 +100,7 @@ app.controller('vias', function ($scope, $http)
 });
 
 app.controller('amigos', function ($scope, $http, $rootScope)
-{
+{   
     var username;
     
     $scope.amigos = function ()
@@ -128,22 +128,49 @@ app.controller('amigos', function ($scope, $http, $rootScope)
         });
     };
     
-    $scope.redirigePerfil=function(usernameAmigo)
+    $scope.redirigePerfil=function(usernamePerfil)
     {   
-        if(usernameAmigo === $rootScope.username)
+        if(usernamePerfil === $rootScope.username)
         {
             location.href = '/redsocialcolaborativaclientangularjs/miperfil.html';
         }
         else
         {
-            username=getParameterByName("username");
-            location.href = '/redsocialcolaborativaclientangularjs/perfil.html?username=' + username;
+            location.href = '/redsocialcolaborativaclientangularjs/perfil.html?username=' + usernamePerfil;
         }
     };
     
     $scope.solicitarAmistad=function()
     {
+        $scope.correcto=false;
+        $scope.erroryaenviado=false;
         
+        username=getParameterByName("username");
+        
+        $http({
+            method: 'POST',
+            url: 'http://localhost:8080/RedSocialColaborativaRESTFUL/perfil/peticiones/',
+            withCredentials: true,
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            data: {
+                username:username
+            }
+
+        }).then(function success(json)
+        {
+            $scope.correcto=true;
+            $scope.erroryaenviado=false;
+        }, function error(json) 
+        {   
+            $scope.correcto=false;
+            if(json.status === 500)
+            {
+                $scope.erroryaenviado=true;
+            }
+            //alert("Sesión caducada. Vuelva a iniciar sesión.");
+        });
     };
 });
 

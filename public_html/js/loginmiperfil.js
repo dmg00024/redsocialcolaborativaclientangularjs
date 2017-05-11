@@ -213,6 +213,27 @@ app.controller('miperfil', function ($scope, $http)
         });
 
     };
+    
+    $scope.rechazarPeticion=function(idPeticion)
+    {
+        $http({
+            method: 'PUT',
+            url: 'http://localhost:8080/RedSocialColaborativaRESTFUL/perfil/peticiones/',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            data: {
+                idPeticion: idPeticion,
+                conf: false
+            }
+
+        }).then(function success(json)
+        {
+            location.href = '/redsocialcolaborativaclientangularjs/miperfil.html';
+        }, function error(json) {
+            //alert("Sesión caducada. Vuelva a iniciar sesión.");
+        });
+    };
 
     $scope.redirige = function (username)
     {

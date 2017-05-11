@@ -48,15 +48,24 @@
                     <div class="container">
 
                         <!-- Trigger the modal with a button -->
-                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Enviar solicitud de amistad</button>
+                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal" ng-click="solicitarAmistad()">Enviar solicitud de amistad</button>
 
                         <!-- Modal -->
                         <div class="modal fade" id="myModal" role="dialog">
                             <div class="modal-dialog">
                                 <!-- Modal content-->
-                                <div class="modal-content">
+                                <div class="modal-content" ng-show="correcto">
                                     <div class="modal-body panel-heading">
-                                        <div class="alert alert-success">Mensaje de alerta</div>
+                                        <div class="alert alert-success">Petición enviada correctamente</div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Volver</button>
+                                    </div>
+                                </div>
+                                
+                                <div class="modal-content" ng-show="erroryaenviado">
+                                    <div class="modal-body panel-heading">
+                                        <div class="alert alert-warning">Petición de amistad ya solicitada a este usuario</div>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-default" data-dismiss="modal">Volver</button>
