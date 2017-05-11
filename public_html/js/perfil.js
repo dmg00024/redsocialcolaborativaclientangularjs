@@ -123,8 +123,6 @@ app.controller('amigos', function ($scope, $http, $rootScope)
                     $scope.muestraBoton=false;
                 }
             }
-            
-            alert($scope.muestraBoton);
         }, function error(json) {
             //alert("Sesión caducada. Vuelva a iniciar sesión.");
         });
@@ -141,6 +139,11 @@ app.controller('amigos', function ($scope, $http, $rootScope)
             username=getParameterByName("username");
             location.href = '/redsocialcolaborativaclientangularjs/perfil.html?username=' + username;
         }
+    };
+    
+    $scope.solicitarAmistad=function()
+    {
+        
     };
 });
 

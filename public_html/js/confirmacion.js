@@ -33,7 +33,7 @@ angular.module('confirmacionregistro', [])
                     
                 }).then(function succes(response)
                 {
-                    location.href='/redsocialcolaborativaclientangularjs/miperfil.html';
+                    location.href='/redsocialcolaborativaclientangularjs/login.html';
                     
                 }, function error(response){
                     alert("no es posible efectuar la confirmación de registro");

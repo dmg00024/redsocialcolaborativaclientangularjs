@@ -43,9 +43,8 @@
                         </div><!--/.nav-collapse -->
                     </div><!--/.container-fluid -->
                 </nav>
-
-                <nav class="navbar">
-
+                
+                <nav class="navbar" ng-controller="amigos" ng-init="amigos()" ng-show="muestraBoton">
                     <div class="container">
 
                         <!-- Trigger the modal with a button -->
@@ -65,20 +64,18 @@
                                 </div>
                             </div>
                         </div>
-
                     </div>
-
+                    
                 </nav>
 
                 <!-- Main component for a primary marketing message or call to action -->
 
                 <div class="jumbotron" ng-controller="perfil" ng-init="datosperfil()">
-                    <h2 id="username">Perfil de <text ng-bind="username"></text></h2>
-                    <h3 id="nivel">Máximo nivel completado: <text ng-bind="nivel"></text></h3>
-                    <h3 id="nombrecompleto"><text ng-bind="nombre"></text> <text ng-bind="apellidos"></text></h3>
-                    <img class="img-thumbnail" height="200" width="300" ng-src="data:image/JPEG;base64,{{foto}}">
+                    <h2 id="username">Perfil de <text ng-bind="usernameamigo"></text></h2>
+                    <h3 id="nivel">Máximo nivel completado: <text ng-bind="nivelamigo"></text></h3>
+                    <h3 id="nombrecompleto"><text ng-bind="nombreamigo"></text> <text ng-bind="apellidosamigo"></text></h3>
+                    <img class="img-thumbnail" height="200" width="300" ng-src="data:image/JPEG;base64,{{fotoamigo}}">
                     <h3></h3>
-                    <button class="btn btn-primary" type="button" value="actualizar" id="actualizar" onclick="window.location.href='/redsocialcolaborativaclientangularjs/actualizaperfil.html' ">Actualizar perfil</button>
                 </div>
 
             </div> <!-- /container -->
