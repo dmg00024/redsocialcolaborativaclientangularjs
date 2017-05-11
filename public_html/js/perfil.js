@@ -67,10 +67,10 @@ app.controller('perfil', function ($scope, $http)
         }).then(function success(json)
         {
             $scope.usernameamigo = json.data.username;
-            $scope.nivel = json.data.nivel;
-            $scope.nombre = json.data.nombre;
-            $scope.apellidos = json.data.apellidos;
-            $scope.foto = json.data.foto;
+            $scope.nivelamigo = json.data.nivel;
+            $scope.nombreamigo = json.data.nombre;
+            $scope.apellidosamigo = json.data.apellidos;
+            $scope.fotoamigo = json.data.foto;
 
         }, function error(response) {
 
@@ -114,6 +114,17 @@ app.controller('amigos', function ($scope, $http, $rootScope)
         }).then(function success(json)
         {
             $scope.amigos = json.data;
+            $scope.muestraBoton=true;
+            
+            for(var i in $scope.amigos)
+            {
+                if($rootScope.username === $scope.amigos[i].username)
+                {
+                    $scope.muestraBoton=false;
+                }
+            }
+            
+            alert($scope.muestraBoton);
         }, function error(json) {
             //alert("Sesión caducada. Vuelva a iniciar sesión.");
         });
