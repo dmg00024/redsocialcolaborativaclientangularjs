@@ -102,6 +102,7 @@ app.controller('vias', function ($scope, $http)
 app.controller('amigos', function ($scope, $http, $rootScope)
 {   
     var username;
+    $scope.muestraBoton=false;
     
     $scope.amigos = function ()
     {
