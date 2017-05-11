@@ -43,39 +43,41 @@
                         </div><!--/.nav-collapse -->
                     </div><!--/.container-fluid -->
                 </nav>
-                
-                <nav class="navbar" ng-controller="amigos" ng-init="amigos()" ng-show="muestraBoton">
-                    <div class="container">
 
-                        <!-- Trigger the modal with a button -->
-                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal" ng-click="solicitarAmistad()">Enviar solicitud de amistad</button>
+                <div ng-controller="amigos" ng-init="amigos()">
+                    <nav class="navbar" ng-show="muestraBoton">
+                        <div class="container">
 
-                        <!-- Modal -->
-                        <div class="modal fade" id="myModal" role="dialog">
-                            <div class="modal-dialog">
-                                <!-- Modal content-->
-                                <div class="modal-content" ng-show="correcto">
-                                    <div class="modal-body panel-heading">
-                                        <div class="alert alert-success">Petición enviada correctamente</div>
+                            <!-- Trigger the modal with a button -->
+                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal" ng-click="solicitarAmistad()">Enviar solicitud de amistad</button>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="myModal" role="dialog">
+                                <div class="modal-dialog">
+                                    <!-- Modal content-->
+                                    <div class="modal-content" ng-show="correcto">
+                                        <div class="modal-body panel-heading">
+                                            <div class="alert alert-success">Petición enviada correctamente</div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Volver</button>
+                                        </div>
                                     </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Volver</button>
-                                    </div>
-                                </div>
-                                
-                                <div class="modal-content" ng-show="erroryaenviado">
-                                    <div class="modal-body panel-heading">
-                                        <div class="alert alert-warning">Petición de amistad ya solicitada a este usuario</div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Volver</button>
+
+                                    <div class="modal-content" ng-show="erroryaenviado">
+                                        <div class="modal-body panel-heading">
+                                            <div class="alert alert-warning">Petición de amistad ya solicitada a este usuario</div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Volver</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    
-                </nav>
+
+                    </nav>
+                </div>
 
                 <!-- Main component for a primary marketing message or call to action -->
 
