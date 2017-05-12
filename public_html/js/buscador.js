@@ -46,15 +46,24 @@ app.controller('logoutcontroller', function ($scope)
 
 app.controller('redirigebusqueda', function ($scope)
 {
+    $scope.seleccion=false;
+    
     $scope.redirigeBusqueda = function ()
     {
-        if($scope.valorBusqueda === "Usuarios")
+        $scope.seleccion=false;
+        
+        if($scope.valorBusqueda === "usuarios")
         {
             location.href='/redsocialcolaborativaclientangularjs/buscausuarios.html';
         }
-        else if($scope.valorBusqueda === "Escuelas de escalada")
+        else if($scope.valorBusqueda === "escuelas de escalada")
         {
             location.href='/redsocialcolaborativaclientangularjs/buscaescuelas.html';
+        }
+        else
+        {
+            $scope.seleccion=true;
+            $scope.mensaje="Por favor introduzca un criterio de búsqueda";
         }
     };
 });

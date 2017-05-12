@@ -43,19 +43,30 @@
                         </div><!--/.nav-collapse -->
                     </div><!--/.container-fluid -->
                 </nav>
-                
+
                 <!-- Main component for a primary marketing message or call to action -->
 
                 <div class="jumbotron" ng-controller="redirigebusqueda">
                     <div class="form-group">
                         <h3><label for="sel1">¿Qué deseas buscar?</label></h3>
                         <select class="form-control" id="sel1" ng-model="valorBusqueda">
-                            <option>Usuarios</option>
-                            <option>Escuelas de escalada</option>
+                            <option value="" disabled selected>Introduce un criterio de búsqueda</option>
+                            <option value="usuarios">Usuarios</option>
+                            <option value="escuelas de escalada">Escuelas de escalada</option>
                         </select>
-                        
+
                     </div>
-                    <button type="button" class="btn btn-primary pull-right" ng-click="redirigeBusqueda()">Confirmar</button>
+                    <button type="submit" data-toggle="modal" data-target="#myModal" class="btn btn-primary pull-right" ng-click="redirigeBusqueda()">Confirmar</button>
+                    <div id="myModal" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+                            <!-- Modal content-->
+                            <div class="modal-content" ng-show="seleccion">
+                            <div class="modal-header">
+                                <div class="alert alert-warning" ng-bind="mensaje"></div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
                 </div>
 
             </div> <!-- /container -->
