@@ -46,11 +46,12 @@
                 
                 <!-- Main component for a primary marketing message or call to action -->
 
-                <div class="jumbotron" ng-controller="redirigebusqueda">
+                <div class="jumbotron">
                     <div class="form-group">
-                        
+                        <h3><label for="username">Introduzca el <i>username</i> (nombre de usuario) del usuario que buscas:</label></h3>
+                        <input type="text" class="form-control" id="username" placeholder="Introduzca el nombre de usuario">
                     </div>
-                    <button type="button" class="btn btn-primary pull-right" ng-click="redirigeBusqueda()">Confirmar</button>
+                    <button type="button" class="btn btn-primary pull-right glyphicon glyphicon-search" ng-click="redirigeBusqueda()"> Buscar</button>
                 </div>
 
             </div> <!-- /container -->

@@ -63,10 +63,10 @@
                                     <div class="modal-body panel-heading">
                                         <div class="panel-body" ng-repeat="peticion in peticiones">
                                             Emisor: <text ng-bind="peticion.emisor"></text>
-                                            <button class="btn btn-default pull-right" type="button" value="aceptar" id="aceptar" ng-click="confirmarpeticion(peticion.idPeticion)">
+                                            <button class="btn btn-default pull-right glyphicon" type="button" value="aceptar" id="aceptar" ng-click="confirmarpeticion(peticion.idPeticion)">
                                                 Aceptar
                                             </button>
-                                            <button class="btn btn-default pull-right" type="button" value="eliminar" id="eliminar" ng-click="rechazarPeticion(peticion.idPeticion)">
+                                            <button class="btn btn-default pull-right glyphicon" type="button" value="eliminar" id="eliminar" ng-click="rechazarPeticion(peticion.idPeticion)">
                                                 Eliminar
                                             </button>
                                         </div>
