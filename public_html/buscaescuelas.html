@@ -46,10 +46,10 @@
                 
                 <!-- Main component for a primary marketing message or call to action -->
 
-                <div class="jumbotron">
+                <div class="jumbotron" ng-controller="buscaescuelas">
                     <div class="form-group">
-                        <h3><label for="sel1">Búsqueda de escuelas de escalada por provincia</label></h3>
-                        <select class="form-control" id="sel1">
+                        <h3><label for="provincia">Búsqueda de escuelas de escalada por provincia</label></h3>
+                        <select class="form-control" id="provincia" ng-model="provincia">
                             <option value="" disabled selected>Selecciona la provincia</option>
                             <option value="1">Álava</option>
                             <option value="2">Albacete</option>
@@ -105,7 +105,7 @@
                             <option value="52">Melilla</option>
                         </select>
                     </div>
-                    <button type="button" class="btn btn-primary pull-right">Confirmar</button>
+                    <button type="button" class="btn btn-primary pull-right" ng-click="redirigeProvincia()">Confirmar</button>
                 </div>
 
             </div> <!-- /container -->

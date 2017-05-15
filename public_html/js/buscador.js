@@ -4,6 +4,13 @@
  * and open the template in the editor.
  */
 
+function getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+            results = regex.exec(location.search);
+    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+
 var app = angular.module('buscador', []);
 
 app.controller('login', function ($scope, $http)
@@ -104,4 +111,34 @@ app.controller('buscausuario', function ($scope, $http)
         location.href='/redsocialcolaborativaclientangularjs/perfil.html?username='+$scope.usernamePerfil;
     };
     
+});
+
+app.controller('buscaescuelas', function ($scope)
+{
+    $scope.redirigeProvincia=function()
+    {
+        location.href='/redsocialcolaborativaclientangularjs/escuelas.html?provincia=' + $scope.provincia;
+    };
+});
+
+app.controller('provincia', function($scope, $http)
+{
+    var cod_provincia=null;
+    
+    $scope.obtenerProvincia=function()
+    {
+        cod_provincia=getParameterByName("provincia");
+        
+        $http({
+            method: 'GET',
+            url: 'http://localhost:8080/RedSocialColaborativaRESTFUL/provincia/'+cod_provincia
+
+        }).then(function success(json)
+        {
+            $scope.provincia=json.data.provincia;
+        }, function error(json) 
+        {  
+            //alert("Usuario y/o contraseña incorrectos");
+        });
+    };
 });
