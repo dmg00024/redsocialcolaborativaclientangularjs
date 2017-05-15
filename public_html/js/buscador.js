@@ -6,7 +6,7 @@
 
 var app = angular.module('buscador', []);
 
-app.controller('login', function ($scope, $http, $rootScope)
+app.controller('login', function ($scope, $http)
 {
     $scope.recuerdaSesion = function ()
     {
@@ -18,7 +18,6 @@ app.controller('login', function ($scope, $http, $rootScope)
         }).then(function succes(json)
         {
             $scope.username = json.data.username;
-            $rootScope.username=json.data.username;
 
         }, function error(json) {
             //alert("Usuario y/o contraseña incorrectos");
@@ -66,4 +65,43 @@ app.controller('redirigebusqueda', function ($scope)
             $scope.mensaje="Por favor introduzca un criterio de búsqueda";
         }
     };
+});
+
+app.controller('buscausuario', function ($scope, $http)
+{
+    $scope.mostrarNoDisponible=true;
+    $scope.usuarioEncontrado=false;
+    
+    $scope.buscarUsuario=function()
+    {
+        $http({
+            method: 'GET',
+            url: 'http://localhost:8080/RedSocialColaborativaRESTFUL/perfil/'+$scope.username,
+            withCredentials: true
+
+        }).then(function success(json)
+        {
+            $scope.mostrarNoDisponible=false;
+            $scope.usuarioEncontrado=true;
+            $scope.mensaje="Resultado para "+$scope.username;
+            $scope.usernamePerfil=json.data.username;
+            $scope.nombrePerfil=json.data.nombre;
+            $scope.apellidosPerfil=json.data.apellidos;
+            $scope.fotoPerfil=json.data.foto;
+            $scope.nivelPerfil=json.data.nivel;
+
+        }, function error(json) 
+        {
+            $scope.mostrarNoDisponible=true;
+            $scope.usuarioEncontrado=false;
+            $scope.mensaje=$scope.username +" no figura como usuario registrado.";
+            //alert("Usuario y/o contraseña incorrectos");
+        });
+    };
+    
+    $scope.verPerfilBuscado=function()
+    {
+        location.href='/redsocialcolaborativaclientangularjs/perfil.html?username='+$scope.usernamePerfil;
+    };
+    
 });

@@ -43,15 +43,47 @@
                         </div><!--/.nav-collapse -->
                     </div><!--/.container-fluid -->
                 </nav>
-                
+
                 <!-- Main component for a primary marketing message or call to action -->
 
-                <div class="jumbotron">
+                <div class="jumbotron" ng-controller="buscausuario">
                     <div class="form-group">
                         <h3><label for="username">Introduzca el <i>username</i> (nombre de usuario) del usuario que buscas:</label></h3>
-                        <input type="text" class="form-control" id="username" placeholder="Introduzca el nombre de usuario">
+                        <input type="text" class="form-control" id="username" placeholder="Introduzca el nombre de usuario" ng-model="username">
                     </div>
-                    <button type="button" class="btn btn-primary pull-right glyphicon glyphicon-search" ng-click="redirigeBusqueda()"> Buscar</button>
+                    <button class="btn btn-primary pull-right glyphicon glyphicon-search" type="submit" data-toggle="modal" data-target="#myModal" ng-click="buscarUsuario()"> Buscar</button>
+                    
+                    <div id="myModal" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+                            <!-- Modal content-->
+                            <div class="modal-content" ng-show="usuarioEncontrado">
+                                <div class="modal-header">
+                                    <div class="alert alert-success" ng-bind="mensaje"></div>
+                                </div>
+                                <div class="jumbotron" >
+                                    <h3 id="usernamePerfil">Perfil de <text ng-bind="usernamePerfil"></text></h3>
+                                    <h3 id="nivelPerfil">Máximo nivel completado: <text ng-bind="nivelPerfil"></text></h3>
+                                    <h3 id="nombrecompletoPerfil"><text ng-bind="nombrePerfil"></text> <text ng-bind="apellidosPerfil"></text></h3>
+                                    <img class="img-thumbnail_Perfil" height="100" width="150" ng-src="data:image/JPEG;base64,{{fotoPerfil}}">
+                                    <h3></h3>
+                                    <button class="btn btn-default" type="submit" value="verperfil" id="verperfil" ng-click="verPerfilBuscado()">Ver perfil</button>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Volver</button>
+                                </div>
+                            </div>
+
+                            <div class="modal-content" ng-show="mostrarNoDisponible">
+                                <div class="modal-header">
+                                    <div class="alert alert-danger" ng-bind="mensaje"></div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Volver</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
 
             </div> <!-- /container -->
