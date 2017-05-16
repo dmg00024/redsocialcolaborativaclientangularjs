@@ -49,12 +49,18 @@
                     <div class="jumbotron" ng-controller="provincia" ng-init="obtenerProvincia()">         
                         <h2>Escuelas de la provincia de <text ng-bind="provincia"></text></h2>
                         <h4>Nota importante: Si no encuentras la escuela que búscas, es posible que nadie la haya añadido. <a href="/redsocialcolaborativaclientangularjs/nuevaescuela.html"> Puedes añadirla tú mismo.</a></h4>
+                        <h4>Si detectaras cualquier errata en las escuelas puedes indicarlo escribiendo a <i>skala2climbing@gmail.com</i></h4>
                     </div>
 
-                    <div class="jumbotron" >
-                        <div class="row">
-                            <div class="col-md-6"><h4>nombre de la escuela</h4></div>
-                            <div class="btn btn-default pull-right">Ver ficha</div>
+                    <div ng-controller="escuelas" ng-init="obtenerEscuelas()">
+                        <div class="jumbotron" ng-repeat="escuela in escuelas">
+                            <div class="row">
+                                <div class="col-md-6"><h4 ng-bind="escuela.nombre"></h4></div>
+                                <div class="btn btn-default pull-right">Ver ficha</div>
+                            </div>
+                        </div>
+                        <div ng-show="!escuelas.length">
+                            <div class="alert alert-info">No hay ninguna escuela aún añadida</div>
                         </div>
                     </div>
                 </div>

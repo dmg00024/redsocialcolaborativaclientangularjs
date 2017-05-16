@@ -142,3 +142,26 @@ app.controller('provincia', function($scope, $http)
         });
     };
 });
+
+app.controller('escuelas', function($scope, $http)
+{
+    var cod_provincia=null;
+    
+    $scope.obtenerEscuelas=function()
+    {
+        cod_provincia=getParameterByName("provincia");
+        
+        $http({
+            method: 'GET',
+            url: 'http://localhost:8080/RedSocialColaborativaRESTFUL/escuelas/'+cod_provincia
+
+        }).then(function success(json)
+        {
+            $scope.escuelas=json.data;
+            
+        }, function error(json) 
+        {  
+            //alert("Usuario y/o contraseña incorrectos");
+        });
+    };
+});
