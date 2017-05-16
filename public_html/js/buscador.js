@@ -143,7 +143,7 @@ app.controller('provincia', function($scope, $http)
     };
 });
 
-app.controller('escuelas', function($scope, $http)
+app.controller('escuelas', function($scope, $http, $rootScope)
 {
     var cod_provincia=null;
     
@@ -164,4 +164,38 @@ app.controller('escuelas', function($scope, $http)
             //alert("Usuario y/o contraseña incorrectos");
         });
     };
+    
+    $scope.redirigeEscuela=function(id)
+    {
+        location.href='/redsocialcolaborativaclientangularjs/sectoresescuela.html?cod='+id;
+    };
+        
 });
+
+app.controller('sectores', function($scope, $http)
+{
+    var cod_escuela=null;
+    
+    $scope.datosEscuela=function()
+    {
+        cod_escuela=getParameterByName("cod");
+        
+        $http({
+            method: 'GET',
+            url: 'http://localhost:8080/RedSocialColaborativaRESTFUL/escuela/'+cod_escuela
+
+        }).then(function success(json)
+        {
+            $scope.nombreEscuela=json.data.nombre;
+            $scope.horarioEscuela=json.data.horario;
+            $scope.descripcionEscuela=json.data.descripcion;
+            $scope.provinciaEscuela=json.data.provincia;
+            $scope.fotoEscuela=json.data.foto;
+            
+        }, function error(json) 
+        {  
+            //alert("Usuario y/o contraseña incorrectos");
+        });
+    };
+});
+

@@ -70,6 +70,9 @@
                                                 Eliminar
                                             </button>
                                         </div>
+                                        <div ng-show="!peticiones.length">
+                                            <div class="alert alert-info">No hay ninguna peticion pendiente</div>
+                                        </div>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-default" data-dismiss="modal">Volver</button>
