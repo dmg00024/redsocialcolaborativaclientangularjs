@@ -197,5 +197,31 @@ app.controller('sectores', function($scope, $http)
             //alert("Usuario y/o contraseña incorrectos");
         });
     };
+    
+    $scope.sectoresEscuela=function()
+    {
+        cod_escuela=getParameterByName("cod");
+        
+        $http({
+            method: 'GET',
+            url: 'http://localhost:8080/RedSocialColaborativaRESTFUL/sectores/'+cod_escuela
+
+        }).then(function success(json)
+        {
+            $scope.sectores=json.data;
+            
+        }, function error(json) 
+        {  
+            //alert("Usuario y/o contraseña incorrectos");
+        });
+    };
+    
+    $scope.redirigeNuevoSector=function()
+    {
+        cod_escuela=getParameterByName("cod");
+        
+        location.href = '/redsocialcolaborativaclientangularjs/nuevosector.html?cod='+cod_escuela;
+    };
 });
+
 

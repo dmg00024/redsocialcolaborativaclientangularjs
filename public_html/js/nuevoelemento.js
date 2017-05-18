@@ -4,6 +4,13 @@
  * and open the template in the editor.
  */
 
+function getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+            results = regex.exec(location.search);
+    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+
 var app = angular.module('nuevoelemento', []);
 
 app.controller('login', function ($scope, $http)
@@ -127,6 +134,95 @@ app.controller('nuevaescuela', function ($scope, $http)
     };
 });
 
+app.controller('nuevosector', function ($scope, $http)
+{
+    $scope.cargando=true;
+    $scope.correcto=false;
+    
+    $scope.guardarNuevoSector = function ()
+    {
+        var fichero;
+        var file = null;
+        file = document.getElementById('inputfoto').files[0];
+        var cod_escuela=null;
+        
+        if (file === undefined)
+        {  
+            alert("entra");
+            cod_escuela=getParameterByName("cod");
+            alert(cod_escuela);
+            
+            $http({
+                method: 'POST',
+                url: 'http://localhost:8080/RedSocialColaborativaRESTFUL/escuelas/'+cod_escuela+'/sectores/',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                data: {
+                    nombre: $scope.nombreSector,
+                    orientacion: $scope.orientacionSector,
+                    dir_foto: null
+                }
+
+            }).then(function succes(json)
+            {
+                $scope.cargando=false;
+                $scope.correcto=true;
+                $scope.mensaje="El sector ha sido registrado correctamente";
+                location.href = 'javascript:window.history.back();';
+
+            }, function error(json) {
+                //alert("Usuario y/o contraseña incorrectos");
+            });
+        } else
+        {
+            cod_escuela=getParameterByName("cod");
+            
+            var reader = new FileReader();
+
+            reader.readAsDataURL(file);
+
+            reader.onload = function ()
+            {
+                fichero = reader.result;
+
+                $http({
+                    method: 'POST',
+                    url: 'http://localhost:8080/RedSocialColaborativaRESTFUL/escuelas/'+cod_escuela+'/sectores/',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    data: {
+                        nombre: $scope.nombreSector,
+                        orientacion: $scope.orientacionSector,
+                        dir_foto: fichero
+                        
+                    }
+
+                }).then(function success(json)
+                {
+                    $scope.cargando=false;
+                    $scope.correcto=true;
+                    $scope.mensaje="El sector ha sido registrado correctamente";
+                    location.href = 'javascript:window.history.back();';
+
+                }, function error(json)
+                {
+                    
+                });
+
+            };
+
+            reader.onerror = function (error)
+            {
+                alert('Error: ', error);
+
+            };
+        }
+    };
+});
+
+
 var openFile = function (event)
 {
     var input = event.target;
@@ -136,7 +232,7 @@ var openFile = function (event)
     reader.onload = function ()
     {
         var dataURL = reader.result;
-        var output = document.getElementById('outputescuela');
+        var output = document.getElementById('outputfoto');
         output.src = dataURL;
     };
     reader.readAsDataURL(input.files[0]);

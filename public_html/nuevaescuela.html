@@ -115,7 +115,7 @@
 
                         <div class="form-group">
                             <label for="nombre">Nombre de la escuela</label>
-                            <input type="text" class="form-control" id="nombre" placeholder="Introduzca su nombre" ng-model="nombreEscuela">
+                            <input type="text" class="form-control" id="nombre" placeholder="Introduzca el nombre de la escuela" ng-model="nombreEscuela">
                         </div>
 
                         <div class="form-group">
@@ -130,9 +130,9 @@
 
                         <div class="form-group">
                             <label>Foto descriptiva de la escuela</label>
-                            <input type="file" id="fotoescuelainput" accept='image/*' onchange='openFile(event)'>
+                            <input type="file" id="inputfoto" accept='image/*' onchange='openFile(event)'>
                             <div>
-                                <img class="img-thumbnail" height="100" width="150" id="outputescuela" >
+                                <img class="img-thumbnail" height="100" width="150" id="outputfoto" >
                             </div>
                             <p class="help-block"> </p>
                         </div>
@@ -142,7 +142,7 @@
                         </div>
 
                         <button type="submit" data-toggle="modal" data-target="#myModal" class="btn btn-success" ng-click="guardarNuevaEscuela()">Confirmar</button>
-                        <button type="button" class="btn btn-primary" onclick="window.location.href = '/redsocialcolaborativaclientangularjs/buscador.html'">Volver al buscador</button>
+                        <button type="button" class="btn btn-primary" onclick="window.location.href = 'javascript:window.history.back();'">&laquo; Volver atrás</button>
 
                         <div id="myModal" class="modal fade" role="dialog">
                             <div class="modal-dialog">
