@@ -222,6 +222,33 @@ app.controller('sectores', function($scope, $http)
         
         location.href = '/redsocialcolaborativaclientangularjs/nuevosector.html?cod='+cod_escuela;
     };
+    
+    $scope.redirigeSector=function(id)
+    {
+        location.href = '/redsocialcolaborativaclientangularjs/viassector.html?cod='+id;
+    };
+});
+
+app.controller('vias', function($scope, $http)
+{
+    var cod_sector=null;
+    
+    $scope.datosSector=function()
+    {
+        cod_sector=getParameterByName("cod");
+        
+        $http({
+            method: 'GET',
+            url: 'http://localhost:8080/RedSocialColaborativaRESTFUL/sector/'+cod_sector
+
+        }).then(function success(json)
+        {
+            
+        }, function error(json) 
+        {  
+            //alert("Usuario y/o contraseña incorrectos");
+        });
+    };
 });
 
 

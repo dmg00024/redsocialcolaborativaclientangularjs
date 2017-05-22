@@ -148,9 +148,7 @@ app.controller('nuevosector', function ($scope, $http)
         
         if (file === undefined)
         {  
-            alert("entra");
             cod_escuela=getParameterByName("cod");
-            alert(cod_escuela);
             
             $http({
                 method: 'POST',
@@ -204,11 +202,12 @@ app.controller('nuevosector', function ($scope, $http)
                     $scope.cargando=false;
                     $scope.correcto=true;
                     $scope.mensaje="El sector ha sido registrado correctamente";
-                    location.href = 'javascript:window.history.back();';
+                    console.log(fichero);
+                //location.href = 'javascript:window.history.back();';
 
                 }, function error(json)
                 {
-                    
+                    console.log(fichero);
                 });
 
             };
