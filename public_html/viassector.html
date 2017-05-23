@@ -49,9 +49,9 @@
                     
                     <div class="jumbotron" ng-init="datosSector()">         
                         <h2>Datos del sector</h2>
+                        <h3>Escuela: <i ng-bind="escuelaSector"></i></h3>
                         <h3>Nombre: <i ng-bind="nombreSector"></i></h3>
                         <h3>Orientacion: <i ng-bind="orientacionSector"></i></h3>
-                        <h3>Escuela: <i ng-bind="escuelaSector"></i></h3>
                         <img class="img-thumbnail" height="400" width="600" ng-src="data:image/JPEG;base64,{{fotoSector}}">
                         <h4>Nota importante: Si no encuentras la vía que buscas, es posible que nadie la haya añadido. <a ng-click="redirigeNuevaVia()"> Puedes añadirla tú mismo.</a></h4>
                         <h4>Si detectaras cualquier errata en las escuelas puedes indicarlo escribiendo a <i>skala2climbing@gmail.com</i></h4>
@@ -61,7 +61,7 @@
                         <div class="jumbotron" ng-repeat="via in vias">
                             <div class="row">
                                 <div class="col-md-6"><h4 ng-bind="via.nombre"></h4></div>
-                                <button class="btn btn-default pull-right">Ver ficha</button>
+                                <button class="btn btn-default pull-right">Valorar</button>
                             </div>
                         </div> <div ng-show="!vias.length">
                             <div class="alert alert-info">No hay ninguna vía aún añadida</div>
