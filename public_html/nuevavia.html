@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Skala 2 - Actualizar perfil</title>
+        <title>Skala 2 - Nueva vía</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -48,101 +48,65 @@
             </div>
 
             <div class="container">
-                <h1 class="col-xs-8 text-info">Añadir nueva escuela de escalada</h1>
+                <h1 class="col-xs-8 text-info">Añadir nueva vía de escalada</h1>
                 <p></p>
 
-                <form ng-controller="nuevaescuela"> 
+                <form ng-controller="nuevavia"> 
                     <div class="col-xs-8">
+
+                        <div class="form-group">
+                            <label for="nombre">Nombre de la vía</label>
+                            <input type="text" class="form-control" id="nombre" placeholder="Introduzca el nombre de la vía" ng-model="nombreVia">
+                        </div>
                         
                         <div class="form-group">
-                            <label for="provincia">Provincia de ubicación</label>
-                            <select class="form-control" id="provincia" ng-model="ubicacionEscuela">
-                                <option value="" disabled selected>Selecciona la provincia donde está ubicada</option>
-                                <option value="1">Álava</option>
-                                <option value="2">Albacete</option>
-                                <option value="3">Alicante/Alacant</option>
-                                <option value="4">Almería</option>
-                                <option value="5">Ávila</option>
-                                <option value="6">Badajoz</option>
-                                <option value="7">Islas Baleares/Illes Balears</option>
-                                <option value="8">Barcelona</option>
-                                <option value="9">Burgos</option>
-                                <option value="10">Cáceres</option>
-                                <option value="11">Cádiz</option>
-                                <option value="12">Castellón/Castelló</option>
-                                <option value="13">Ciudad Real</option>
-                                <option value="14">Córdoba</option>
-                                <option value="15">A Coruña</option>
-                                <option value="16">Cuenca</option>
-                                <option value="17">Girona</option>
-                                <option value="18">Granada</option>
-                                <option value="19">Guadalajara</option>
-                                <option value="20">Guipúzcoa/Gipuzkoa</option>
-                                <option value="21">Huelva</option>
-                                <option value="22">Huesca</option>
-                                <option value="23">Jaén</option>
-                                <option value="24">León</option>
-                                <option value="25">Lérida/Lleida</option>
-                                <option value="26">La Rioja</option>
-                                <option value="27">Lugo</option>
-                                <option value="28">Madrid</option>
-                                <option value="29">Málaga</option>
-                                <option value="30">Murcia</option>
-                                <option value="31">Navarra</option>
-                                <option value="32">Ourense</option>
-                                <option value="33">Asturias/Asturies</option>
-                                <option value="34">Palencia</option>
-                                <option value="35">Las Palmas</option>
-                                <option value="36">Pontevedra</option>
-                                <option value="37">Salamanca</option>
-                                <option value="38">Santa Cruz de Tenerife</option>
-                                <option value="39">Cantabria</option>
-                                <option value="40">Segovia</option>
-                                <option value="41">Sevilla</option>
-                                <option value="42">Soria</option>
-                                <option value="43">Tarragona</option>
-                                <option value="44">Teuel</option>
-                                <option value="45">Toledo</option>
-                                <option value="46">Valencia/València</option>
-                                <option value="47">Valladolid</option>
-                                <option value="48">Vizcaya/Bizkaia</option>
-                                <option value="49">Zamora</option>
-                                <option value="50">Zaragoza</option>
-                                <option value="51">Ceuta</option>
-                                <option value="52">Melilla</option>
+                            <label for="id_mapa">Identificador de sector (si procede)</label>
+                            <input type="text" class="form-control" id="id_mapa" placeholder="Introduzca el identificador en el sector (si tuviera)" ng-model="idMapaVia">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="nivelOficial">Indique el nivel oficial de la vía</label>
+                            <select class="form-control" id="nivelOficial" ng-model="nivelOficialVia">
+                                <option value="" disabled selected>Seleccione el nivel oficial de la vía</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="5+">5+</option>
+                                <option value="6a">6a</option>
+                                <option value="6a+">6a+</option>
+                                <option value="6b">6b</option>
+                                <option value="6b+">6b+</option>
+                                <option value="6c">6c</option>
+                                <option value="6c+">6c+</option>
+                                <option value="7a">7a</option>
+                                <option value="7a+">7a+</option>
+                                <option value="7b">7b</option>
+                                <option value="7b+">7b+</option>
+                                <option value="7c">7c</option>
+                                <option value="7c+">7c+</option>
+                                <option value="8a">8a</option>
+                                <option value="8a+">8a+</option>
+                                <option value="8b">8b</option>
+                                <option value="8b+">8b+</option>
+                                <option value="8c">8c</option>
+                                <option value="8c+">8c+</option>
+                                <option value="9a">9a</option>
+                                <option value="9a+">9a+</option>
+                                <option value="9b">9b</option>
+                                <option value="9b+">9b+</option>
+                                <option value="9c">9c</option>
+                                <option value="9c+">9c+</option>
                             </select>
                         </div>
-
-                        <div class="form-group">
-                            <label for="nombre">Nombre de la escuela</label>
-                            <input type="text" class="form-control" id="nombre" placeholder="Introduzca su nombre" ng-model="nombreEscuela">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="horario">Horario</label>
-                            <textarea class="form-control" rows="2" id="horario" placeholder="Indique brévemente el horario de la escuela" ng-model="horarioEscuela"></textarea>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="descripcion">Descripcion</label>
-                            <textarea class="form-control" rows="5" id="descripcion" placeholder="Escriba una pequeña descripción de la escuela" ng-model="descripcionEscuela"></textarea>
-                        </div> 
-
-                        <div class="form-group">
-                            <label>Foto descriptiva de la escuela</label>
-                            <input type="file" id="fotoescuelainput" accept='image/*' onchange='openFile(event)'>
-                            <div>
-                                <img class="img-thumbnail" height="100" width="150" id="outputescuela" >
-                            </div>
-                            <p class="help-block"> </p>
-                        </div>
-
+                         
                         <div>
                             <div class="alert alert-danger">Por favor asegúrese de que todos los datos son correctos antes de confirmar</div>
                         </div>
 
-                        <button type="submit" data-toggle="modal" data-target="#myModal" class="btn btn-success" ng-click="guardarNuevaEscuela()">Confirmar</button>
-                        <button type="button" class="btn btn-primary" onclick="window.location.href = '/redsocialcolaborativaclientangularjs/buscador.html'">Volver al buscador</button>
+                        <button type="submit" data-toggle="modal" data-target="#myModal" class="btn btn-success" ng-click="guardarNuevaVia()">Confirmar</button>
+                        <button type="button" class="btn btn-primary" onclick="window.location.href = 'javascript:window.history.back();'">&laquo; Volver atrás</button>
 
                         <div id="myModal" class="modal fade" role="dialog">
                             <div class="modal-dialog">

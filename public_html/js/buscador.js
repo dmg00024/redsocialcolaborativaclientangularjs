@@ -243,11 +243,39 @@ app.controller('vias', function($scope, $http)
 
         }).then(function success(json)
         {
+            $scope.nombreSector=json.data.nombre;
+            $scope.orientacionSector=json.data.orientacion;
+            $scope.escuelaSector=json.data.escuela;
+            $scope.fotoSector=json.data.foto;
+        }, function error(json) 
+        {  
+            //alert("Usuario y/o contraseña incorrectos");
+        });
+    };
+    
+    $scope.viasSector=function()
+    {
+        cod_sector=getParameterByName("cod");
+        
+        $http({
+            method: 'GET',
+            url: 'http://localhost:8080/RedSocialColaborativaRESTFUL/vias/'+cod_sector
+
+        }).then(function success(json)
+        {
+            $scope.vias=json.data;
             
         }, function error(json) 
         {  
             //alert("Usuario y/o contraseña incorrectos");
         });
+    };
+    
+    $scope.redirigeNuevaVia=function()
+    {
+        cod_sector=getParameterByName("cod");
+        
+        location.href = '/redsocialcolaborativaclientangularjs/nuevavia.html?cod='+cod_sector;
     };
 });
 

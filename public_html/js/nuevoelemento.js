@@ -221,6 +221,40 @@ app.controller('nuevosector', function ($scope, $http)
     };
 });
 
+app.controller('nuevavia', function ($scope, $http)
+{
+    var cod_sector=null;
+    
+    $scope.guardarNuevaVia = function ()
+    {
+        cod_sector=getParameterByName("cod");
+        
+        $http({
+            method: 'POST',
+            url: 'http://localhost:8080/RedSocialColaborativaRESTFUL/sectores/' + cod_sector + '/vias/',
+            
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            data: {
+                nombre: $scope.nombreVia,
+                id_mapa: $scope.idMapaVia,
+                nivel_oficial: $scope.nivelOficialVia
+            }
+
+        }).then(function success(json)
+        {
+            $scope.cargando = false;
+            $scope.correcto = true;
+            $scope.mensaje = "La vía ha sido registrada correctamente";
+            //location.href = 'javascript:window.history.back();';
+
+        }, function error(json)
+        {
+            
+        });
+    };
+});
 
 var openFile = function (event)
 {
