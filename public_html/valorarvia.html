@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Skala 2 - Mi buscador</title>
+        <title>Skala 2 - Valorar via</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -17,7 +17,7 @@
         <link rel="stylesheet" href="lib/device-mockups/device-mockups.min.css">
 
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.3/angular.min.js"></script>
-        <script src="js/buscador.js"></script>
+        <script src="js/nuevoelemento.js"></script>
     </head>
 
     <body>
@@ -46,28 +46,43 @@
 
                 <!-- Main component for a primary marketing message or call to action -->
                 <div ng-controller="vias">
-                    
+
                     <div class="jumbotron" ng-init="datosSector()">         
-                        <h2>Datos del sector</h2>
+                        <h2>Datos de la vía</h2>
                         <h3>Nombre: <i ng-bind="nombreSector"></i></h3>
                         <h3>Escuela: <i ng-bind="escuelaSector"></i></h3>
                         <h3>Orientacion: <i ng-bind="orientacionSector"></i></h3>
-                        <img class="img-thumbnail" height="400" width="600" ng-src="data:image/JPEG;base64,{{fotoSector}}">
-                        <h4>Nota importante: Si no encuentras la vía que buscas, es posible que nadie la haya añadido. <a ng-click="redirigeNuevaVia()"> Puedes añadirla tú mismo.</a></h4>
-                        <h4>Si detectaras cualquier errata en las escuelas puedes indicarlo escribiendo a <i>skala2climbing@gmail.com</i></h4>
-                    </div>
+                        <h3>Nivel oficial: </h3>
+                        <h3>Nivel consensuado: </h3>
+                        <h3>Valoración: </h3>
+                        <h3>Veces que ha sido valorada: </h3>
 
-                    <div ng-init="viasSector()">
-                        <div class="jumbotron" ng-repeat="via in vias">
-                            <div class="row">
-                                <div class="col-md-6"><h4 ng-bind="via.nombre"></h4></div>
-                                <button class="btn btn-default pull-right">Valorar</button>
+                        <button type="submit" data-toggle="modal" data-target="#myModal" class="btn btn-success" ng-click="guardarNuevoSector()">Valorar vía</button>
+                        <button type="submit" data-toggle="modal" data-target="#comentarios" class="btn btn-info" ng-click="guardarNuevoSector()">Ver comentarios</button>
+
+                        <button type="button" class="btn btn-primary pull-right" onclick="window.location.href = 'javascript:window.history.back();'">&laquo; Volver atrás</button>
+
+                        <div id="comentarios" class="modal fade" role="dialog">
+                            <div class="modal-dialog">
+                                <!-- Modal content-->
+                                <div  >
+                                    <div class="jumbotron">
+                                        <button type="submit" data-toggle="modal" data-target="#myModal" class="btn btn-primary pull-right" ng-click="guardarNuevoSector()">Añadir un comentario</button>
+                                        <div class="jumbotron"> 
+
+                                            <div class="jumbotron" style="background-color: #ffffff">
+                                                <b>Publicado por usuario de prueba</b>
+                                                <p></p>
+                                                <div>
+                                                    hola a todos dejo este comentario de prueba
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div> 
+                                </div>
                             </div>
-                        </div> <div ng-show="!vias.length">
-                            <div class="alert alert-info">No hay ninguna vía aún añadida</div>
                         </div>
                     </div>
-                
                 </div>
 
             </div> <!-- /container -->
