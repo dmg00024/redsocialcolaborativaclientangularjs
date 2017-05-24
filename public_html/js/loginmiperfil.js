@@ -76,7 +76,7 @@ app.controller('login', function ($scope, $http, $rootScope)
 
         }).then(function succes(json)
         {
-            $scope.username = json.data.username;
+            $scope.usernamesesion = json.data.username;
 
         }, function error(json) {
             //alert("Usuario y/o contraseña incorrectos");

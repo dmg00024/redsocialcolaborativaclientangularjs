@@ -61,7 +61,7 @@
                         <div class="jumbotron" ng-repeat="via in vias">
                             <div class="row">
                                 <div class="col-md-6"><h4 ng-bind="via.nombre"></h4></div>
-                                <button class="btn btn-default pull-right">Valorar</button>
+                                <button class="btn btn-default pull-right" ng-click="redirigeValorarVia(via.id_via)">Valorar</button>
                             </div>
                         </div> <div ng-show="!vias.length">
                             <div class="alert alert-info">No hay ninguna vía aún añadida</div>

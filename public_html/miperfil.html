@@ -37,8 +37,8 @@
                                 <li><a class="btn alert-danger" ng-controller="logoutcontroller" ng-click="logout()">Cerrar Sesión</a></li>
                             </ul>
 
-                            <ul class="nav navbar-nav navbar-right">
-                                <li class="active"><h3 class="badge" id="conectado">Conectado como: <text ng-bind="username"></text></h3></li>
+                            <ul class="nav navbar-nav navbar-right" ng-controller="login" ng-init="recuerdaSesion()">
+                                <li class="active"><h3 class="badge" id="conectado">Conectado como: <text ng-bind="usernamesesion"></text></h3></li>
                             </ul>
                         </div><!--/.nav-collapse -->
                     </div><!--/.container-fluid -->

@@ -277,6 +277,11 @@ app.controller('vias', function($scope, $http)
         
         location.href = '/redsocialcolaborativaclientangularjs/nuevavia.html?cod='+cod_sector;
     };
+    
+    $scope.redirigeValorarVia=function(id_via)
+    {
+        location.href = '/redsocialcolaborativaclientangularjs/valorarvia.html?cod='+id_via;
+    };
 });
 
 
