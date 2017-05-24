@@ -284,4 +284,90 @@ app.controller('vias', function($scope, $http)
     };
 });
 
+app.controller('via', function($http, $scope)
+{
+    var cod_via=null;
+    
+    $scope.datosVia=function()
+    {
+        cod_via=getParameterByName("cod");
+        
+        $http({
+            method: 'GET',
+            url: 'http://localhost:8080/RedSocialColaborativaRESTFUL/via/'+cod_via
+
+        }).then(function success(json)
+        {
+            $scope.nombreVia=json.data.nombre;
+            $scope.sectorVia=json.data.sector;
+            $scope.identificadorVia=json.data.id_mapa;
+            $scope.nivelOficialVia=json.data.nivel_oficial;
+            $scope.nivelConsensuadoVia=json.data.nivel_consensuado;
+            $scope.valoracionVia=json.data.estrellas;
+            
+            if($scope.valoracionVia === null)
+            {
+                $scope.novalorada=true;
+                $scope.uno=false;
+                $scope.dos=false;
+                $scope.tres=false;
+            }
+            else if($scope.valoracionVia === 1)
+            {
+                $scope.novalorada=false;
+                $scope.uno=true;
+                $scope.dos=false;
+                $scope.tres=false;
+            }
+            else if($scope.valoracionVia === 2)
+            {
+                $scope.novalorada=false;
+                $scope.uno=false;
+                $scope.dos=true;
+                $scope.tres=false;
+            }
+            else if($scope.valoracionVia === 3)
+            {
+                $scope.novalorada=false;
+                $scope.uno=false;
+                $scope.dos=false;
+                $scope.tres=true;
+            }
+            
+            $scope.contadorVia=json.data.contador;
+        }, function error(json) 
+        {  
+            //alert("Usuario y/o contraseña incorrectos");
+        });
+    };
+    
+    $scope.valorarVia=function()
+    {
+        cod_via=getParameterByName("cod");
+        
+        $http({
+            method: 'POST',
+            url: 'http://localhost:8080/RedSocialColaborativaRESTFUL/perfil/vias/'+cod_via,
+            withCredentials: true,
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            data: {
+                nivel:$scope.nivelConsensuado,
+                valoracion:$scope.valoracion
+            }
+        }).then(function success(json)
+        {
+            $scope.valoracionCorrecta=true;
+            $scope.valoracionError=false;
+            location.href='/redsocialcolaborativaclientangularjs/valorarvia.html?cod='+cod_via;
+        }, function error(json) 
+        {  
+            $scope.valoracionCorrecta=false;
+            $scope.valoracionError=true;
+            //alert("Usuario y/o contraseña incorrectos");
+        });
+    };
+});
+
 

@@ -45,20 +45,24 @@
                 </nav>
 
                 <!-- Main component for a primary marketing message or call to action -->
-                <div >
+                <div ng-controller="via">
 
-                    <div class="jumbotron">         
+                    <div class="jumbotron" ng-init="datosVia()">
+                        
                         <h2>Datos de la vía</h2>
-                        <h3>Nombre: <i ></i></h3>
-                        <h3>Escuela: <i ></i></h3>
-                        <h3>Orientacion: <i ></i></h3>
-                        <h3>Nivel oficial: </h3>
-                        <h3>Nivel consensuado: </h3>
-                        <h3>Valoración: </h3>
-                        <h3>Veces que ha sido valorada: </h3>
+                        <h3>Nombre: <i ng-bind="nombreVia"></i></h3>
+                        <h3>Sector: <i ng-bind="sectorVia"></i></h3>
+                        <h3>Identificador: <i ng-bind="identificadorVia"></i></h3>
+                        <h3>Nivel oficial: <i ng-bind="nivelOficialVia"></i></h3>
+                        <h3>Nivel consensuado: <i ng-bind="nivelConsensuadoVia"></i></h3>
+                        <h3 ng-show="novalorada">Grado de belleza: <i>Todavía no ha sido valorada por ningún usuario</i></h3>
+                        <h3 ng-show="uno">Grado de belleza: &#9733;</h3>
+                        <h3 ng-show="dos">Grado de belleza: &#9733; &#9733;</h3>
+                        <h3 ng-show="tres">Grado de belleza &#9733; &#9733; &#9733;</h3>
+                        <h3>Veces que ha sido valorada: <i ng-bind="contadorVia"></i></h3>
 
-                        <button type="submit" data-toggle="modal" data-target="#valorarVia" class="btn btn-success" ng-click="guardarNuevoSector()">Valorar vía</button>
-                        <button type="submit" data-toggle="modal" data-target="#comentarios" class="btn btn-info" ng-click="guardarNuevoSector()">Ver comentarios</button>
+                        <button type="submit" data-toggle="modal" data-target="#valorarVia" class="btn btn-success" >Valorar vía</button>
+                        <button type="submit" data-toggle="modal" data-target="#comentarios" class="btn btn-info" >Ver comentarios</button>
 
                         <button type="button" class="btn btn-primary pull-right" onclick="window.location.href = 'javascript:window.history.back();'">&laquo; Volver atrás</button>
 
@@ -70,7 +74,7 @@
                                         <div class="alert alert-warning">Por favor introduzca sus parámetros de valoración de la vía</div>
                                         <div class="form-group">
                                             <label for="nivelConsensuado">¿Qué nivel tiene para ti la vía?</label>
-                                            <select class="form-control" id="nivelConsensuado">
+                                            <select class="form-control" id="nivelConsensuado" ng-model="nivelConsensuado">
                                                 <option value="" disabled selected>Indique el nivel que tiene la vía bajo tu opinión</option>
                                                 <option value="1">1</option>
                                                 <option value="2">2</option>
@@ -107,7 +111,7 @@
 
                                         <div class="form-group">
                                             <label for="valoracion">Valora el grado de belleza de la vía</label>
-                                            <select class="form-control" id="valoracion">
+                                            <select class="form-control" id="valoracion" ng-model="valoracion">
                                                 <option value="" disabled selected>Indique el nivel que tiene la vía bajo tu opinión</option>
                                                 <option value="1">&#9733;</option>
                                                 <option value="2">&#9733;&#9733;</option>
@@ -120,12 +124,12 @@
                                     
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-default" data-dismiss="modal">Volver</button>
-                                        <button type="submit" data-toggle="modal" data-target="#enviaValoracion" class="btn btn-primary pull-right" >Enviar valoración</button>
+                                        <button type="submit" data-toggle="modal" data-target="#enviaValoracion" class="btn btn-primary pull-right" ng-click="valorarVia()">Enviar valoración</button>
 
                                         <div id="enviaValoracion" class="modal fade" role="dialog">
                                             <div class="modal-dialog">
                                                 <!-- Modal content-->
-                                                <div class="modal-content">
+                                                <div class="modal-content" ng-show="valoracionCorrecta">
                                                     <div class="modal-header">
                                                         <div class="alert alert-success">Valoración guardada correctamente.</div>
                                                     </div>
@@ -134,7 +138,7 @@
                                                     </div>
                                                 </div>
                                                 
-                                                <div class="modal-content">
+                                                <div class="modal-content" ng-show="valoracionError">
                                                     <div class="modal-header">
                                                         <div class="alert alert-danger">No ha sido posible guardar la valoración. Por favor inténtelo más tarde.</div>
                                                     </div>
