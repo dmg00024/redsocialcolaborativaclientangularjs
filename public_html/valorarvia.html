@@ -57,19 +57,105 @@
                         <h3>Valoración: </h3>
                         <h3>Veces que ha sido valorada: </h3>
 
-                        <button type="submit" data-toggle="modal" data-target="#myModal" class="btn btn-success" ng-click="guardarNuevoSector()">Valorar vía</button>
+                        <button type="submit" data-toggle="modal" data-target="#valorarVia" class="btn btn-success" ng-click="guardarNuevoSector()">Valorar vía</button>
                         <button type="submit" data-toggle="modal" data-target="#comentarios" class="btn btn-info" ng-click="guardarNuevoSector()">Ver comentarios</button>
 
                         <button type="button" class="btn btn-primary pull-right" onclick="window.location.href = 'javascript:window.history.back();'">&laquo; Volver atrás</button>
 
-                        <div id="comentarios" class="modal fade" role="dialog">
-                            <div class="modal-dialog">
+                        <div id="valorarVia" class="modal fade" role="dialog">
+                            <div class="modal-dialog modal-lg">
                                 <!-- Modal content-->
-                                <div  >
-                                    <div class="jumbotron">
-                                        <button type="submit" data-toggle="modal" data-target="#myModal" class="btn btn-primary pull-right" ng-click="guardarNuevoSector()">Añadir un comentario</button>
-                                        <div class="jumbotron"> 
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <div class="alert alert-warning">Por favor introduzca sus parámetros de valoración de la vía</div>
+                                        <div class="form-group">
+                                            <label for="nivelConsensuado">¿Qué nivel tiene para ti la vía?</label>
+                                            <select class="form-control" id="nivelConsensuado">
+                                                <option value="" disabled selected>Indique el nivel que tiene la vía bajo tu opinión</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                                <option value="5+">5+</option>
+                                                <option value="6a">6a</option>
+                                                <option value="6a+">6a+</option>
+                                                <option value="6b">6b</option>
+                                                <option value="6b+">6b+</option>
+                                                <option value="6c">6c</option>
+                                                <option value="6c+">6c+</option>
+                                                <option value="7a">7a</option>
+                                                <option value="7a+">7a+</option>
+                                                <option value="7b">7b</option>
+                                                <option value="7b+">7b+</option>
+                                                <option value="7c">7c</option>
+                                                <option value="7c+">7c+</option>
+                                                <option value="8a">8a</option>
+                                                <option value="8a+">8a+</option>
+                                                <option value="8b">8b</option>
+                                                <option value="8b+">8b+</option>
+                                                <option value="8c">8c</option>
+                                                <option value="8c+">8c+</option>
+                                                <option value="9a">9a</option>
+                                                <option value="9a+">9a+</option>
+                                                <option value="9b">9b</option>
+                                                <option value="9b+">9b+</option>
+                                                <option value="9c">9c</option>
+                                                <option value="9c+">9c+</option>
+                                            </select>
+                                        </div>
 
+                                        <div class="form-group">
+                                            <label for="valoracion">Valora el grado de belleza de la vía</label>
+                                            <select class="form-control" id="valoracion">
+                                                <option value="" disabled selected>Indique el nivel que tiene la vía bajo tu opinión</option>
+                                                <option value="1">&#9733;</option>
+                                                <option value="2">&#9733;&#9733;</option>
+                                                <option value="3">&#9733;&#9733;&#9733;</option>
+                                                <option value="4">&#9733;&#9733;&#9733;&#9733;</option>
+                                                <option value="5">&#9733;&#9733;&#9733;&#9733;&#9733;</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Volver</button>
+                                        <button type="submit" data-toggle="modal" data-target="#enviaValoracion" class="btn btn-primary pull-right" >Enviar valoración</button>
+
+                                        <div id="enviaValoracion" class="modal fade" role="dialog">
+                                            <div class="modal-dialog">
+                                                <!-- Modal content-->
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <div class="alert alert-success">Valoración guardada correctamente.</div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-default" data-dismiss="modal">&laquo; Volver</button>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <div class="alert alert-danger">No ha sido posible guardar la valoración. Por favor inténtelo más tarde.</div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-default" data-dismiss="modal">&laquo; Volver</button>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="comentarios" class="modal fade" role="dialog">
+                            <div class="modal-dialog modal-lg">
+                                <!-- Modal content-->
+                                <div>
+                                    <div class="jumbotron">
+                                        <div class="jumbotron"> 
                                             <div class="jumbotron" style="background-color: #ffffff">
                                                 <b>Publicado por usuario de prueba</b>
                                                 <p></p>
@@ -78,10 +164,60 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div> 
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Volver</button>
+                                            <button type="submit" data-toggle="modal" data-target="#addcomentario" class="btn btn-primary pull-right" ng-click="guardarNuevoSector()">Añadir un comentario</button>
+
+                                            <div id="addcomentario" class="modal fade" role="dialog">
+                                                <div class="modal-dialog">
+                                                    <!-- Modal content-->
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <div class="form-group">
+                                                                <label for="comentario">Introduzca su comentario</label>
+                                                                <textarea class="form-control" rows="5" id="comentario" placeholder="Introduzca su comentario aquí"></textarea>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-default" data-dismiss="modal">&laquo; Volver</button>
+                                                            <button type="submit" data-toggle="modal" data-target="#enviarcomentario" class="btn btn-primary pull-right" >Comentar</button>
+
+                                                            <div id="enviarcomentario" class="modal fade" role="dialog">
+                                                                <div class="modal-dialog">
+                                                                    <!-- Modal content-->
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <div class="alert alert-success">Comentario añadido correctamente.</div>
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <button type="button" class="btn btn-default" data-dismiss="modal">&laquo; Volver</button>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <div class="alert alert-danger">No ha sido posible guardar el comentario. Por favor inténtelo más tarde.</div>
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <button type="button" class="btn btn-default" data-dismiss="modal">&laquo; Volver</button>
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                        
                     </div>
                 </div>
 
