@@ -368,6 +368,30 @@ app.controller('via', function($http, $scope)
             //alert("Usuario y/o contraseña incorrectos");
         });
     };
+    
+    $scope.comentarios=function()
+    {
+        cod_via=getParameterByName("cod");
+        
+        $http({
+            method: 'GET',
+            url: 'http://localhost:8080/RedSocialColaborativaRESTFUL/comentarios/'+cod_via,
+            withCredentials: true,
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            data: {
+                nivel:$scope.nivelConsensuado,
+                valoracion:$scope.valoracion
+            }
+        }).then(function success(json)
+        {
+            $scope.comentarios=json.data;
+        }, function error(json) 
+        {  
+            
+        });
+    };
 });
 
 

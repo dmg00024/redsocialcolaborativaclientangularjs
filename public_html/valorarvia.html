@@ -5,7 +5,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
+        
         <!-- Custom Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
@@ -152,17 +152,17 @@
                             </div>
                         </div>
                         
-                        <div id="comentarios" class="modal fade" role="dialog">
+                        <div  id="comentarios" class="modal fade" role="dialog">
                             <div class="modal-dialog modal-lg">
                                 <!-- Modal content-->
                                 <div>
                                     <div class="jumbotron">
-                                        <div class="jumbotron"> 
-                                            <div class="jumbotron" style="background-color: #ffffff">
-                                                <b>Publicado por usuario de prueba</b>
+                                        <div class="jumbotron" ng-init="comentarios()"> 
+                                            <div class="jumbotron" style="background-color: #ffffff" ng-repeat="comentario in comentarios">
+                                                <b>Publicado por <text ng-bind="comentario.username"></text></b>
                                                 <p></p>
-                                                <div>
-                                                    hola a todos dejo este comentario de prueba
+                                                <div ng-bind="comentario.valor_comentario">
+                                                    
                                                 </div>
                                             </div>
                                         </div>
@@ -177,7 +177,7 @@
                                                         <div class="modal-header">
                                                             <div class="form-group">
                                                                 <label for="comentario">Introduzca su comentario</label>
-                                                                <textarea class="form-control" rows="5" id="comentario" placeholder="Introduzca su comentario aquí"></textarea>
+                                                                <textarea class="form-control" rows="10" id="comentario" placeholder="Introduzca su comentario aquí"></textarea>
                                                             </div>
                                                         </div>
                                                         <div class="modal-footer">
