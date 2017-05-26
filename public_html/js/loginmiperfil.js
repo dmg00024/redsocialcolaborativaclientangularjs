@@ -175,7 +175,6 @@ app.controller('miperfil', function ($scope, $http)
             //alert("Sesión caducada. Vuelva a iniciar sesión.");
         });
 
-
         $http({
             method: 'GET',
             url: 'http://localhost:8080/RedSocialColaborativaRESTFUL/perfil/amigos',

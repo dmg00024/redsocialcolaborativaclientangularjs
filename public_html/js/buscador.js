@@ -360,7 +360,6 @@ app.controller('via', function($http, $scope)
         {
             $scope.valoracionCorrecta=true;
             $scope.valoracionError=false;
-            location.href='/redsocialcolaborativaclientangularjs/valorarvia.html?cod='+cod_via;
         }, function error(json) 
         {  
             $scope.valoracionCorrecta=false;
@@ -376,14 +375,8 @@ app.controller('via', function($http, $scope)
         $http({
             method: 'GET',
             url: 'http://localhost:8080/RedSocialColaborativaRESTFUL/comentarios/'+cod_via,
-            withCredentials: true,
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            data: {
-                nivel:$scope.nivelConsensuado,
-                valoracion:$scope.valoracion
-            }
+            withCredentials: true
+            
         }).then(function success(json)
         {
             $scope.comentarios=json.data;
@@ -391,6 +384,41 @@ app.controller('via', function($http, $scope)
         {  
             
         });
+    };
+    
+    $scope.nuevoComentario=function()
+    {
+        cod_via=getParameterByName("cod");
+        $scope.comentarioCorrecto=false;
+        $scope.comentarioIncorrecto=false;
+        
+        $http({
+            method: 'POST',
+            url: 'http://localhost:8080/RedSocialColaborativaRESTFUL/comentarios/'+cod_via,
+            withCredentials: true,
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            data: {
+                valor_comentario: $scope.valorComentario
+            }
+        }).then(function success(json)
+        {
+            $scope.comentarioCorrecto=true;
+            $scope.comentarioIncorrecto=false;
+            
+        }, function error(json) 
+        {  
+            $scope.comentarioCorrecto=false;
+            $scope.comentarioIncorrecto=true;
+        });
+    };
+    
+    $scope.autoRedirige=function()
+    {
+        cod_via=getParameterByName("cod");
+        
+        location.href='/redsocialcolaborativaclientangularjs/valorarvia.html?cod='+cod_via;
     };
 });
 

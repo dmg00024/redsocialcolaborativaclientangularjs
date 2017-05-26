@@ -15,6 +15,7 @@
         <link rel="stylesheet" href="lib/font-awesome/css/font-awesome.min.css">
         <link rel="stylesheet" href="lib/simple-line-icons/css/simple-line-icons.css">
         <link rel="stylesheet" href="lib/device-mockups/device-mockups.min.css">
+        <link rel="stylesheet" href="css/estilo.css">
 
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.3/angular.min.js"></script>
         <script src="js/buscador.js"></script>
@@ -62,7 +63,6 @@
                         <h3>Veces que ha sido valorada: <i ng-bind="contadorVia"></i></h3>
 
                         <button type="submit" data-toggle="modal" data-target="#valorarVia" class="btn btn-success" >Valorar vía</button>
-                        <button type="submit" data-toggle="modal" data-target="#comentarios" class="btn btn-info" >Ver comentarios</button>
 
                         <button type="button" class="btn btn-primary pull-right" onclick="window.location.href = 'javascript:window.history.back();'">&laquo; Volver atrás</button>
 
@@ -118,8 +118,14 @@
                                                 <option value="3">&#9733;&#9733;&#9733;</option>
                                             </select>
                                         </div>
+
+                                        <div class="form-group">
+                                            <label for="comentario">Si lo deseas agrega tu comentario sobre la vía</label>
+                                            <textarea class="form-control" rows="5" id="comentario"></textarea>
+                                        </div>
+
                                     </div>
-                                    
+
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-default" data-dismiss="modal">Volver</button>
                                         <button type="submit" data-toggle="modal" data-target="#enviaValoracion" class="btn btn-primary pull-right" ng-click="valorarVia()">Enviar valoración</button>
@@ -132,7 +138,7 @@
                                                         <div class="alert alert-success">Valoración guardada correctamente.</div>
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <button type="button" class="btn btn-default" data-dismiss="modal">&laquo; Volver</button>
+                                                        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="autoRedirige()">&laquo; Volver</button>
                                                     </div>
                                                 </div>
                                                 
@@ -141,7 +147,7 @@
                                                         <div class="alert alert-danger">No ha sido posible guardar la valoración. Por favor inténtelo más tarde.</div>
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <button type="button" class="btn btn-default" data-dismiss="modal">&laquo; Volver</button>
+                                                        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="autoRedirige()">&laquo; Volver</button>
                                                     </div>
                                                 </div>
                                                 
@@ -151,75 +157,6 @@
                                 </div>
                             </div>
                         </div>
-                        
-                        <div  id="comentarios" class="modal fade" role="dialog">
-                            <div class="modal-dialog modal-lg">
-                                <!-- Modal content-->
-                                <div>
-                                    <div class="jumbotron">
-                                        <div class="jumbotron" ng-init="comentarios()"> 
-                                            <div class="jumbotron" style="background-color: #ffffff" ng-repeat="comentario in comentarios">
-                                                <b>Publicado por <text ng-bind="comentario.username"></text></b>
-                                                <p></p>
-                                                <div ng-bind="comentario.valor_comentario">
-                                                    
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">Volver</button>
-                                            <button type="submit" data-toggle="modal" data-target="#addcomentario" class="btn btn-primary pull-right" ng-click="guardarNuevoSector()">Añadir un comentario</button>
-
-                                            <div id="addcomentario" class="modal fade" role="dialog">
-                                                <div class="modal-dialog">
-                                                    <!-- Modal content-->
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <div class="form-group">
-                                                                <label for="comentario">Introduzca su comentario</label>
-                                                                <textarea class="form-control" rows="10" id="comentario" placeholder="Introduzca su comentario aquí"></textarea>
-                                                            </div>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-default" data-dismiss="modal">&laquo; Volver</button>
-                                                            <button type="submit" data-toggle="modal" data-target="#enviarcomentario" class="btn btn-primary pull-right" >Comentar</button>
-
-                                                            <div id="enviarcomentario" class="modal fade" role="dialog">
-                                                                <div class="modal-dialog">
-                                                                    <!-- Modal content-->
-                                                                    <div class="modal-content">
-                                                                        <div class="modal-header">
-                                                                            <div class="alert alert-success">Comentario añadido correctamente.</div>
-                                                                        </div>
-                                                                        <div class="modal-footer">
-                                                                            <button type="button" class="btn btn-default" data-dismiss="modal">&laquo; Volver</button>
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <div class="modal-content">
-                                                                        <div class="modal-header">
-                                                                            <div class="alert alert-danger">No ha sido posible guardar el comentario. Por favor inténtelo más tarde.</div>
-                                                                        </div>
-                                                                        <div class="modal-footer">
-                                                                            <button type="button" class="btn btn-default" data-dismiss="modal">&laquo; Volver</button>
-                                                                        </div>
-                                                                    </div>
-
-                                                                </div>
-                                                            </div>
-
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
                     </div>
                 </div>
 
