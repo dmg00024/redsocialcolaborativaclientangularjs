@@ -146,9 +146,11 @@ app.controller('provincia', function($scope, $http)
 app.controller('escuelas', function($scope, $http, $rootScope)
 {
     var cod_provincia=null;
+    $scope.ninguno=false;
     
     $scope.obtenerEscuelas=function()
     {
+        $scope.ninguno=false;
         cod_provincia=getParameterByName("provincia");
         
         $http({
@@ -158,6 +160,11 @@ app.controller('escuelas', function($scope, $http, $rootScope)
         }).then(function success(json)
         {
             $scope.escuelas=json.data;
+            
+            if($scope.escuelas.length === 0)
+            {
+                $scope.ninguno=true;
+            }
             
         }, function error(json) 
         {  
@@ -175,6 +182,7 @@ app.controller('escuelas', function($scope, $http, $rootScope)
 app.controller('sectores', function($scope, $http)
 {
     var cod_escuela=null;
+    $scope.ninguno=false;
     
     $scope.datosEscuela=function()
     {
@@ -210,6 +218,11 @@ app.controller('sectores', function($scope, $http)
         {
             $scope.sectores=json.data;
             
+            if($scope.sectores.length === 0)
+            {
+                $scope.ninguno=true;
+            }
+            
         }, function error(json) 
         {  
             //alert("Usuario y/o contraseña incorrectos");
@@ -236,6 +249,7 @@ app.controller('vias', function($scope, $http)
     $scope.datosSector=function()
     {
         cod_sector=getParameterByName("cod");
+        $scope.ninguno=false;
         
         $http({
             method: 'GET',
@@ -265,6 +279,11 @@ app.controller('vias', function($scope, $http)
         {
             $scope.vias=json.data;
             
+            if($scope.vias.length === 0)
+            {
+                $scope.ninguno=true;
+            }
+            
         }, function error(json) 
         {  
             //alert("Usuario y/o contraseña incorrectos");
@@ -287,6 +306,7 @@ app.controller('vias', function($scope, $http)
 app.controller('via', function($http, $scope)
 {
     var cod_via=null;
+    $scope.comentarios=false;
     
     $scope.datosVia=function()
     {
@@ -347,25 +367,49 @@ app.controller('via', function($http, $scope)
         
         $http({
             method: 'POST',
-            url: 'http://localhost:8080/RedSocialColaborativaRESTFUL/perfil/vias/'+cod_via,
+            url: 'http://localhost:8080/RedSocialColaborativaRESTFUL/perfil/vias/' + cod_via,
             withCredentials: true,
             headers: {
                 'Content-Type': 'application/json'
             },
             data: {
-                nivel:$scope.nivelConsensuado,
-                valoracion:$scope.valoracion
+                nivel: $scope.nivelConsensuado,
+                valoracion: $scope.puntuacion
             }
         }).then(function success(json)
         {
-            $scope.valoracionCorrecta=true;
-            $scope.valoracionError=false;
-        }, function error(json) 
-        {  
-            $scope.valoracionCorrecta=false;
-            $scope.valoracionError=true;
+            valoracion=$scope.nivelConsensuado;
+            $scope.valoracionCorrecta = true;
+            $scope.valoracionError = false;
+        }, function error(json)
+        {
+            $scope.valoracionCorrecta = false;
+            $scope.valoracionError = true;
             //alert("Usuario y/o contraseña incorrectos");
         });
+
+        $http({
+            method: 'POST',
+            url: 'http://localhost:8080/RedSocialColaborativaRESTFUL/comentarios/' + cod_via,
+            withCredentials: true,
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            data: {
+                valor_comentario: $scope.comentario,
+                puntuacion: $scope.puntuacion,
+                valoracion:$scope.nivelConsensuado
+            }
+        }).then(function success(json)
+        {
+            $scope.valoracionCorrecta = true;
+            $scope.valoracionError = false;
+        }, function error(json)
+        {
+            $scope.valoracionCorrecta = false;
+            $scope.valoracionError = true;
+        });
+        
     };
     
     $scope.comentarios=function()
@@ -380,37 +424,15 @@ app.controller('via', function($http, $scope)
         }).then(function success(json)
         {
             $scope.comentarios=json.data;
-        }, function error(json) 
-        {  
             
-        });
-    };
-    
-    $scope.nuevoComentario=function()
-    {
-        cod_via=getParameterByName("cod");
-        $scope.comentarioCorrecto=false;
-        $scope.comentarioIncorrecto=false;
-        
-        $http({
-            method: 'POST',
-            url: 'http://localhost:8080/RedSocialColaborativaRESTFUL/comentarios/'+cod_via,
-            withCredentials: true,
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            data: {
-                valor_comentario: $scope.valorComentario
+            if($scope.comentarios.length === 0)
+            {
+                $scope.ninguno=true;
             }
-        }).then(function success(json)
-        {
-            $scope.comentarioCorrecto=true;
-            $scope.comentarioIncorrecto=false;
             
         }, function error(json) 
         {  
-            $scope.comentarioCorrecto=false;
-            $scope.comentarioIncorrecto=true;
+            
         });
     };
     

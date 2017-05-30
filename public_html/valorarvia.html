@@ -56,10 +56,10 @@
                         <h3>Identificador: <i ng-bind="identificadorVia"></i></h3>
                         <h3>Nivel oficial: <i ng-bind="nivelOficialVia"></i></h3>
                         <h3>Nivel consensuado: <i ng-bind="nivelConsensuadoVia"></i></h3>
-                        <h3 ng-show="novalorada">Grado de belleza: <i>Todavía no ha sido valorada por ningún usuario</i></h3>
-                        <h3 ng-show="uno">Grado de belleza: &#9733;</h3>
-                        <h3 ng-show="dos">Grado de belleza: &#9733; &#9733;</h3>
-                        <h3 ng-show="tres">Grado de belleza &#9733; &#9733; &#9733;</h3>
+                        <h3 ng-cloak ng-show="novalorada">Grado de belleza: <i>Todavía no ha sido valorada por ningún usuario</i></h3>
+                        <h3 ng-cloak ng-show="uno">Grado de belleza: &#9733;</h3>
+                        <h3 ng-cloak ng-show="dos">Grado de belleza: &#9733; &#9733;</h3>
+                        <h3 ng-cloak ng-show="tres">Grado de belleza &#9733; &#9733; &#9733;</h3>
                         <h3>Veces que ha sido valorada: <i ng-bind="contadorVia"></i></h3>
 
                         <button type="submit" data-toggle="modal" data-target="#valorarVia" class="btn btn-success" >Valorar vía</button>
@@ -111,7 +111,7 @@
 
                                         <div class="form-group">
                                             <label for="valoracion">Valora el grado de belleza de la vía</label>
-                                            <select class="form-control" id="valoracion" ng-model="valoracion">
+                                            <select class="form-control" id="valoracion" ng-model="puntuacion">
                                                 <option value="" disabled selected>Indique el nivel que tiene la vía bajo tu opinión</option>
                                                 <option value="1">&#9733;</option>
                                                 <option value="2">&#9733;&#9733;</option>
@@ -121,7 +121,7 @@
 
                                         <div class="form-group">
                                             <label for="comentario">Si lo deseas agrega tu comentario sobre la vía</label>
-                                            <textarea class="form-control" rows="5" id="comentario"></textarea>
+                                            <textarea class="form-control" rows="5" id="comentario" ng-model="comentario"></textarea>
                                         </div>
 
                                     </div>
@@ -158,6 +158,27 @@
                             </div>
                         </div>
                     </div>
+
+                    <div ng-init="comentarios()">
+                        <div ng-cloak class="panel panel-default" ng-repeat="comentario in comentarios">
+                            <div class="panel-heading">
+                                Publicado por <text ng-bind="comentario.username">, el</text> <text ng-bind="comentario.fecha"></text>, a las <text ng-bind="comentario.hora"></text> horas
+                            </div>
+                            <div class="panel-body">
+                                <div>Valoracion de nivel: <text ng-bind="comentario.valoracion"></text></div>
+                                <div ng-cloak ng-show="comentario.puntuacion === 1">Puntuacion: &#9733;</div>
+                                <div ng-cloak ng-show="comentario.puntuacion === 2">Puntuacion: &#9733;&#9733;</div>
+                                <div ng-cloak ng-show="comentario.puntuacion === 3">Puntuacion: &#9733;&#9733;&#9733;</div>
+                                <i ng-bind="comentario.valor_comentario"></i>
+                            </div>
+                            
+                        </div>
+                        
+                        <div ng-cloak ng-show="ninguno">
+                            <div class="alert alert-info">No hay ninguna valoración aún. Te invitamos a ser el primero en hacerlo!!</div>
+                        </div>
+                    </div>
+                    
                 </div>
 
             </div> <!-- /container -->

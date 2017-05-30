@@ -56,13 +56,13 @@ and open the template in the editor.
                 <div id="myModal" class="modal fade" role="dialog">
                     <div class="modal-dialog">
                         <!-- Modal content-->
-                        <div class="modal-content" ng-show="success">
+                        <div class="modal-content" ng-cloak ng-show="success">
                             <div class="modal-header">
                                 <div class="alert alert-info" ng-bind="mensaje"></div>
                             </div>
                         </div>
 
-                        <div class="modal-content" ng-show="fail">
+                        <div class="modal-content" ng-cloak ng-show="fail">
                             <div class="modal-header">
                                 <div class="alert alert-danger" ng-bind="mensaje"></div>
                             </div>

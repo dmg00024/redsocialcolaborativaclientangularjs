@@ -64,7 +64,9 @@
                                 <div class="col-md-6"><h4 ng-bind="via.nombre"></h4></div>
                                 <button class="btn btn-default pull-right" ng-click="redirigeValorarVia(via.id_via)">Valorar</button>
                             </div>
-                        </div> <div ng-show="!vias.length">
+                        </div> 
+                        
+                        <div ng-show="ninguno">
                             <div class="alert alert-info">No hay ninguna vía aún añadida</div>
                         </div>
                     </div>

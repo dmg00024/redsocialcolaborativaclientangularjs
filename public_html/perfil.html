@@ -97,7 +97,30 @@
 
                     <div id="vias" class="panel panel-default" ng-controller="vias" ng-init="vias()">
                         <div class="panel-heading" id="usernamelistvias">Vias realizadas </div>
-                        <div class="panel-body" ng-repeat="via in vias"><text ng-bind="via.nombre"></text>
+                        <div class="panel-body" ng-repeat="via in vias">
+                            <div>
+                                <b>Nombre de la vía:</b> <i ng-bind="via.nombre"></i>
+                            </div>
+                            <div>
+                                <b>Provincia:</b> <i ng-bind="via.provincia"></i>
+                            </div>
+                            <div>
+                                <b>Escuela:</b> <i ng-bind="via.escuela"></i>
+                            </div>
+                            <div>
+                                <b>Sector:</b> <i ng-bind="via.sector"></i>
+                            </div>
+                            <div>
+                                <b>Nivel oficial:</b> <i ng-bind="via.nivel_oficial"></i>
+                            </div>
+                            <div>
+                                <b>Nivel consensuado:</b> <i ng-bind="via.nivel_consensuado"></i>
+                            </div>
+                            
+                            <div ng-show="via.estrellas === 1"><b>Puntuacion de los usuarios:</b> &#9733;</div>
+                            <div ng-show="via.estrellas === 2"><b>Puntuacion de los usuarios:</b> &#9733;&#9733;</div>
+                            <div ng-show="via.estrellas === 3"><b>Puntuacion de los usuarios:</b> &#9733;&#9733;&#9733;</div>
+                            
                             <button class="btn btn-default pull-right" type="button" value="verficha" id="{{via.id_via}}" >
                                 Ver ficha
                             </button>
@@ -106,7 +129,11 @@
 
                     <div id="amigos" class="panel panel-default" ng-controller="amigos" ng-init="amigos()">
                         <div class="panel-heading" id="usernamelistamigos">Amigos </div>
-                        <div class="panel-body" ng-repeat="amigo in amigos"><text ng-bind="amigo.username"></text>
+                        <div class="panel-body" ng-repeat="amigo in amigos">
+                            <div>
+                                <b ng-bind="amigo.nombre"></b>: <i ng-bind="amigo.username"></i>
+                            </div>
+                            
                             <button class="btn btn-default pull-right" type="button" value="verficha" id="{{amigo.username}}" ng-click="redirigePerfil(amigo.username)">
                                 Ver perfil
                             </button>
