@@ -97,6 +97,11 @@ app.controller('vias', function ($scope, $http)
             //alert("Sesión caducada. Vuelva a iniciar sesión.");
         });
     };
+    
+    $scope.redirigeFichaVia=function(id)
+    {
+        location.href = '/redsocialcolaborativaclientangularjs/valorarvia.html?cod=' + id;
+    };
 });
 
 app.controller('amigos', function ($scope, $http, $rootScope)

@@ -121,7 +121,7 @@
                             <div ng-show="via.estrellas === 2"><b>Puntuacion de los usuarios:</b> &#9733;&#9733;</div>
                             <div ng-show="via.estrellas === 3"><b>Puntuacion de los usuarios:</b> &#9733;&#9733;&#9733;</div>
                             
-                            <button class="btn btn-default pull-right" type="button" value="verficha" id="{{via.id_via}}" >
+                            <button class="btn btn-default pull-right" type="button" value="verficha" id="{{via.id_via}}" ng-click="redirigeFichaVia(via.id_via)">
                                 Ver ficha
                             </button>
                         </div>

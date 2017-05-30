@@ -238,6 +238,11 @@ app.controller('miperfil', function ($scope, $http)
     {
         location.href = '/redsocialcolaborativaclientangularjs/perfil.html?username=' + username;
     };
+    
+    $scope.redirigeFichaVia=function(id)
+    {
+        location.href = '/redsocialcolaborativaclientangularjs/valorarvia.html?cod=' + id;
+    };
 });
 
 app.controller('logoutcontroller', function ($scope)

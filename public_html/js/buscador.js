@@ -324,6 +324,8 @@ app.controller('via', function($http, $scope)
             $scope.nivelOficialVia=json.data.nivel_oficial;
             $scope.nivelConsensuadoVia=json.data.nivel_consensuado;
             $scope.valoracionVia=json.data.estrellas;
+            $scope.escuelaVia=json.data.escuela;
+            $scope.provinciaVia=json.data.provincia;
             
             if($scope.valoracionVia === null)
             {
