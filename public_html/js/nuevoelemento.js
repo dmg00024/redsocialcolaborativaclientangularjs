@@ -203,7 +203,7 @@ app.controller('nuevosector', function ($scope, $http)
                     $scope.correcto=true;
                     $scope.mensaje="El sector ha sido registrado correctamente";
                     console.log(fichero);
-                //location.href = 'javascript:window.history.back();';
+                    location.href = 'javascript:window.history.back();';
 
                 }, function error(json)
                 {
@@ -247,7 +247,7 @@ app.controller('nuevavia', function ($scope, $http)
             $scope.cargando = false;
             $scope.correcto = true;
             $scope.mensaje = "La vía ha sido registrada correctamente";
-            //location.href = 'javascript:window.history.back();';
+            location.href = 'javascript:window.history.back();';
 
         }, function error(json)
         {
