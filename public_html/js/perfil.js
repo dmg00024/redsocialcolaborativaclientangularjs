@@ -107,7 +107,6 @@ app.controller('vias', function ($scope, $http)
 app.controller('amigos', function ($scope, $http, $rootScope)
 {   
     var username;
-    $scope.muestraBoton=false;
     
     $scope.amigos = function ()
     {
@@ -121,12 +120,29 @@ app.controller('amigos', function ($scope, $http, $rootScope)
         {
             $scope.amigos = json.data;
             
-            for(var i in $scope.amigos)
+            $http({
+                method: 'GET',
+                url: 'http://localhost:8080/RedSocialColaborativaRESTFUL/username/',
+                withCredentials: true
+
+            }).then(function succes(json)
             {
-                if($rootScope.username !== $scope.amigos[i].username)
+                $scope.username = json.data.username;
+
+            }, function error(json) {
+                //alert("Usuario y/o contraseña incorrectos");
+            });
+
+            for(var i in $scope.amigos)
+            {   
+                if($scope.username === $scope.amigos[i].username)
+                {
+                    $scope.muestraBoton=false;
+                    break;
+                }
+                else
                 {
                     $scope.muestraBoton=true;
-                    break;
                 }
             }
         }, function error(json) {

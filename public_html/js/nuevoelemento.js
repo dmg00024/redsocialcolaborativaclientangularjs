@@ -59,7 +59,7 @@ app.controller('nuevaescuela', function ($scope, $http)
     {
         var fichero;
         var file = null;
-        file = document.getElementById('fotoescuelainput').files[0];
+        file = document.getElementById('inputfoto').files[0];
 
         if (file === undefined)
         {   
@@ -72,8 +72,8 @@ app.controller('nuevaescuela', function ($scope, $http)
                 data: {
                     nombre: $scope.nombreEscuela,
                     descripcion: $scope.descripcionEscuela,
-                    dir_foto: null,
                     horario: $scope.horarioEscuela,
+                    dir_foto: null,
                     cod_provincia: $scope.ubicacionEscuela
                 }
 
@@ -106,8 +106,8 @@ app.controller('nuevaescuela', function ($scope, $http)
                     data: {
                         nombre: $scope.nombreEscuela,
                         descripcion: $scope.descripcionEscuela,
-                        dir_foto: fichero,
                         horario: $scope.horarioEscuela,
+                        dir_foto: fichero,
                         cod_provincia: $scope.ubicacionEscuela
                     }
 
