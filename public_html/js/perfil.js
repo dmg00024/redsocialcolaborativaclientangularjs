@@ -120,13 +120,13 @@ app.controller('amigos', function ($scope, $http, $rootScope)
         }).then(function success(json)
         {
             $scope.amigos = json.data;
-            $scope.muestraBoton=true;
             
             for(var i in $scope.amigos)
             {
-                if($rootScope.username === $scope.amigos[i].username)
+                if($rootScope.username !== $scope.amigos[i].username)
                 {
-                    $scope.muestraBoton=false;
+                    $scope.muestraBoton=true;
+                    break;
                 }
             }
         }, function error(json) {
